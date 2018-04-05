@@ -133,9 +133,10 @@ namespace DAS_SDK.MVC.Controller
             myObjFront = new MyFront<object>();
             myObjList = new MyList<object>();
 
-            file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100,3)*10)));
             //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)),"300.txt",0,
             //    Enums.DAS_FORMAT_ENUM.TXT_1ROW_NVALS_COMMA_SEPARTOR);
+
+            file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100,3)*10)));
             file_Generator.CreateAndFill<int>();
 
             if (false)

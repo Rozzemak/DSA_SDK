@@ -7,7 +7,6 @@ using DAS_SDK.MVC.Model.Sorts.Base_Sort;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using Alea;
 using DAS_SDK.MVC.Model.Debug;
 
 namespace DAS_SDK.MVC.Model.Sorts

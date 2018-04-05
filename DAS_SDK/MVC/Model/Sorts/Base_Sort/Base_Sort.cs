@@ -155,6 +155,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             }
             else
             {
+                OnFileSorted(new FileSortedEventArgs(startedSortingDate));
                 _Debug.AddMessage<object>(new Message<object>("Creating sorted file [" + filePath + "_sorted" + ".txt" + "]"));
                 using (StreamWriter sr = new StreamWriter(filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt", false, Encoding.UTF8))
                 {
@@ -164,7 +165,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
                     }
                 }
                 string sortType = "";
-                MessageBox.Show("Sorted file[" + filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt" + "] \n has been created, \n using " + sortType + ".");
+                MessageBox.Show("Sorted file[" + filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt" + "] \n has been created, \n using " + GetType().Name.Substring(0,GetType().Name.Length-2) + ".");
                 Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
                 {
                     front_END.SortButton.Content = "Cont_Init";
@@ -229,7 +230,6 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
                 default:
                     break;
             }
-            OnFileSorted(new FileSortedEventArgs(startedSortingDate));
             return true;
         }
 

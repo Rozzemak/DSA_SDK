@@ -1,7 +1,4 @@
-﻿using Alea;
-using Alea.Parallel;
-using Alea.Fody;
-using DAS_SDK.MVC.Controller;
+﻿using DAS_SDK.MVC.Controller;
 using DAS_SDK.MVC.Enums;
 using DAS_SDK.MVC.Model;
 using System;
@@ -91,20 +88,6 @@ namespace DAS_SDK
                 }
             }
             TextBox_ArrayContent.Text = null;
-        }
-
-        [GpuManaged]
-        public static void Managed()
-        {
-            int[] arr = new int[10];
-            var gpu = Gpu.Default;
-
-            gpu.For(0, arr.Length, i => arr[i] = i);
-            Console.WriteLine("GPU FILLED ARRAY Content:");
-            foreach (var item in arr)
-            {
-                Console.WriteLine(item);
-            }
         }
 
         private void Cont_InitButton_Click(object sender, RoutedEventArgs e)

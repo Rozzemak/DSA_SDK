@@ -7,7 +7,6 @@ using DAS_SDK.MVC.Model.Sorts.Base_Sort;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using Alea;
 using DAS_SDK.MVC.Model.Debug;
 
 namespace DAS_SDK.MVC.Model.Sorts
@@ -44,7 +43,7 @@ namespace DAS_SDK.MVC.Model.Sorts
                     if (doubleList[j + 1] < doubleList[j])
                     {
                         double tmp = doubleList[j + 1];
-                        doubleList[j + 1] = doubleList[j];
+                        doubleList[j+1] = doubleList[j];
                         doubleList[j] = tmp;
                     }
                 }
@@ -113,11 +112,11 @@ namespace DAS_SDK.MVC.Model.Sorts
                    // UpdateUserInterface(bucketNumber, front_END);
                 });
                 int i = 0;
-                foreach (Queue<T> bucket in buckets)
+                for (int j = 0; j < buckets.Count; j++)
                 {
-                    while (bucket.Count > 0)
+                    while (buckets[j].Count > 0)
                     {
-                        list[i] = (T)(object)bucket.Dequeue();
+                        list[i] = (T)(object)buckets[j].Dequeue();
                         i++;
                     }
                 }

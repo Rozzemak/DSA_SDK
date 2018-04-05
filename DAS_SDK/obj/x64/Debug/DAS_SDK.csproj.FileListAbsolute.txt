@@ -1,19 +1,6 @@
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\DAS_SDK.exe.config
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\DAS_SDK.exe
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\DAS_SDK.pdb
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Alea.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Alea.Fody.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Alea.IL.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Alea.Parallel.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\FSharp.Core.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Mono.Cecil.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Alea.Instrumentation.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\ICSharpCode.Decompiler.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Mono.Cecil.Rocks.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\ICSharpCode.NRefactory.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\ICSharpCode.NRefactory.CSharp.dll
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\bin\x64\Debug\Alea.xml
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK.csprojResolveAssemblyReference.cache
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\MainWindow.g.cs
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\App.g.cs
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK_MarkupCompile.cache
@@ -23,6 +10,5 @@ C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAV
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK.Properties.Resources.resources
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK.csproj.GenerateResource.cache
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK.csproj.CoreCompileInputs.cache
-C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK.csproj.CopyComplete
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK.exe
 C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAVKA\DAS_SDK\obj\x64\Debug\DAS_SDK.pdb

@@ -15,8 +15,8 @@ namespace DAS_SDK.MVC.Model.Sorts
     {
         Random random = new Random();
 
-        public Quick_Soort(Base_Debug debug, Front_END.Front_END front_END)
-            : base(debug, front_END)
+        public Quick_Soort(Base_Debug debug, Front_END.Front_END front_END, string path = "sorted.txt")
+            : base(debug, front_END, path)
         {
             if (double.TryParse(list[0].ToString(), out double test))
             {

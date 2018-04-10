@@ -66,12 +66,18 @@ namespace DAS_SDK.MVC.Controller
             //});
             //  _thread.Start();
 
+
+
+
             Thread _threadRd = new Thread(delegate ()
             {
                 //radix_Sort = new Radix_Sort<int>(debug, front_END);
                 //radix_Sort.Sort();
-                search_Base = new Search_Base<int>("unsorted_sorted.txt", debug, front_END, 554, Sort_Type.Quick);
-                search_Base.GetSort().Sort();
+                file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)), "file2.txt");
+                file_Generator.CreateAndFill<int>();
+
+                search_Base = new Search_Base<int>("file2.txt", debug, front_END, -2129115644, Sort_Type.Quick);
+                search_Base.Search();
             });
             _threadRd.Start();
 
@@ -140,8 +146,6 @@ namespace DAS_SDK.MVC.Controller
             //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)),"300.txt",0,
             //    Enums.DAS_FORMAT_ENUM.TXT_1ROW_NVALS_COMMA_SEPARTOR);
 
-            //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100,3)*10)));
-            //file_Generator.CreateAndFill<int>();
 
             if (false)
             {

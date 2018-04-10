@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace DAS_SDK.MVC.Model.Search
@@ -16,35 +18,40 @@ namespace DAS_SDK.MVC.Model.Search
         Select,
         Quick,
         Radix,
-        none
+        none 
     }
 
-    class Search_Base<T>  where T : IComparable
+    class Search_Base<T> where T : IComparable
     {
         List<T> matches = new List<T>();
         Random random = new Random();
         T searched = default(T);
+        Front_END.Front_END front_END;
         Sort_Type sort_Type;
         Base_Debug _Debug;
-        private Object sort;
+
+        protected delegate List<T> DoSearch(List<T> sortedList, Front_END.Front_END front_END);
+        protected DoSearch _DoSearch;
+        private object sort = new object();
 
         public Search_Base(string path, Base_Debug debug, Front_END.Front_END front_END, T searched, Sort_Type sort_Type)
         {
             this.sort_Type = sort_Type;
             this._Debug = debug;
+            this.front_END = front_END;
             switch (sort_Type)
             {
                 case Sort_Type.Bubble:
-                    sort = new Bubble_Sort<T>(debug, front_END);
+                    sort = new Bubble_Sort<T>(debug, front_END, path);
                     break;
                 case Sort_Type.Select:
-                    sort = new Select_Sort<T>(debug, front_END);
+                    sort = new Select_Sort<T>(debug, front_END, path);
                     break;
                 case Sort_Type.Quick:
-                    sort = new Quick_Soort<T>(debug, front_END);
+                    sort = new Quick_Soort<T>(debug, front_END, path);
                     break;
                 case Sort_Type.Radix:
-                    sort = new Radix_Sort<T>(debug, front_END);
+                    sort = new Radix_Sort<T>(debug, front_END, path);
                     break;
                 case Sort_Type.none:
                     throw new Exception("You cannot search in unsorted file!, yet.");
@@ -52,8 +59,42 @@ namespace DAS_SDK.MVC.Model.Search
             this.searched = searched;
             if (double.TryParse(GetSort().list[0].ToString(), out double test))
             {
-               GetSort()._DoSort = B_Search;
+                if (!GetSort().IsSorted())
+                {
+                    // This is very dirty quick workaround of async wait. Though it´s not async. Wanted to catch an event here, but :P.
+                    GetSort().Sort();
+                    while (!GetSort().isSorted)
+                    {
+
+                    }             
+                } else
+                {
+                    // maybe something clever here ?
+                }
+                // This is quick impl for Binary search start, but this should have it´s own class.
+                _DoSearch = B_Search;
             }
+        }
+
+        /// <summary>
+        /// Sorts list with new thread,
+        /// with it´s chilrden method via delegate.
+        /// </summary>
+        public void Search()
+        {
+            Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
+            {
+                front_END.SortButton.Content = "Searching!";
+                front_END.SortButton.Visibility = Visibility.Hidden;
+            });
+            Thread t = new Thread(delegate ()
+            {
+                _Debug.AddMessage<object>(new Message<object>("Thread for searching started."));
+               // OnSortingStart(new SortingStartedEventArgs());
+               // startedSortingDate = DateTime.Now;
+               _DoSearch(GetSort().list, front_END);
+            });
+            t.Start();
         }
 
         private List<T> B_Search(List<T> list, Front_END.Front_END front_END)
@@ -86,13 +127,13 @@ namespace DAS_SDK.MVC.Model.Search
                 _Debug.AddMessage<object>(msg);
                 return matches;
             }
-            else throw  GetSort().CouldNotBeSorted();
+            else throw CouldNotBeFound();
         }
 
         protected virtual bool Search_Logic(Front_END.Front_END front_END)
         {
-            int l = 0, r = GetSort().list.Count - 1;
-            while (l <= r)
+            int l = 0, r = GetSort().list.Count-1;
+            while (l < r)
             {
                 int m = l + (r - l) / 2;
                 // Check if searched is present at mid
@@ -109,11 +150,11 @@ namespace DAS_SDK.MVC.Model.Search
                     {
                         matches.Add(GetSort().list[_c]);
                     }
-                    for (int i = 0; i < matches.Capacity-1; i++)
+                    for (int i = 0; i < matches.Count; i++)
                     {
-                        if (Convert.ToDouble(matches[i]) != Convert.ToDouble(searched))
+                        if ((matches[i]).CompareTo(searched) != 0)
                         {
-                            matches.RemoveAt(i);
+                            matches[i] = default(T);
                         }
                     }
                     return true;
@@ -142,6 +183,7 @@ namespace DAS_SDK.MVC.Model.Search
                 });
             }
         }
+
         public Base_Sort<T> GetSort()
         {
             switch (this.sort_Type)
@@ -149,15 +191,26 @@ namespace DAS_SDK.MVC.Model.Search
                 case Sort_Type.Bubble:
                     return (sort as Bubble_Sort<T>);
                 case Sort_Type.Select:
-                    return (sort as Bubble_Sort<T>);
+                    return (sort as Select_Sort<T>);
                 case Sort_Type.Quick:
-                    return (sort as Bubble_Sort<T>);
+                    return (sort as Quick_Soort<T>);
                 case Sort_Type.Radix:
-                    return (sort as Bubble_Sort<T>);
+                    return (sort as Radix_Sort<T>);
                 case Sort_Type.none:
-                    return (sort as Bubble_Sort<T>);
+                    return null;
             }
             return null;
+        }
+
+        public Exception CouldNotBeFound()
+        {
+            Exception ex = new Exception("Did not find any matches[" + searched + "] with:[" + this.GetType().Name + "]");
+            var task = Task.Run(async () =>
+            {
+                await _Debug.AddMessage_Assync<object>(new Message<object>(ex.Message, MessageType_ENUM.Exception));
+            });
+            task.Wait();
+            throw ex;
         }
     }
 }

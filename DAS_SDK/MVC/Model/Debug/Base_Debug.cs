@@ -58,11 +58,10 @@ namespace DAS_SDK.MVC.Model.Debug
             {
                 if (messageTypeOnly == MessageType_ENUM.DEFAULT_WRITE_ALL)
                 {
-                    foreach (var item in messages)
+                    for (int i = 0; i < messages.Count; i++)
                     {
-
                         // Console.ResetColor();
-                        switch (item._MessageType)
+                        switch (messages[i]._MessageType)
                         {
                             case MessageType_ENUM.Standard:
                                 break;
@@ -86,16 +85,16 @@ namespace DAS_SDK.MVC.Model.Debug
                             case MessageType_ENUM.DEFAULT_WRITE_ALL:
                                 break;
                         }
-                        Console.WriteLine("[" + Enum.GetName(typeof(MessageType_ENUM), item._MessageType) + "]" + item.MessageContent);
+                        Console.WriteLine("[" + Enum.GetName(typeof(MessageType_ENUM), messages[i]._MessageType) + "]" + messages[i].MessageContent);
                         Console.ResetColor();
                     }
                 }
                 else
                 {
-                    foreach (var item in messages)
+                    for (int i = 0; i < messages.Count; i++)
                     {
-                        if (item._MessageType == messageTypeOnly)
-                            Console.WriteLine("[" + Enum.GetName(typeof(MessageType_ENUM), item._MessageType) + "]" + item.MessageContent);
+                        if (messages[i]._MessageType == messageTypeOnly)
+                            Console.WriteLine("[" + Enum.GetName(typeof(MessageType_ENUM), messages[i]._MessageType) + "]" + messages[i].MessageContent);
                     }
                 }
                 messages.Clear();

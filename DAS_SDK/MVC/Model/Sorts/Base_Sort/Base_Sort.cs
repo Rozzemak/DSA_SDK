@@ -29,7 +29,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> self)
             => self.Select((item, index) => (item, index));
     }
-    
+
     class Base_Sort<T>
     {
         private DateTime startedSortingDate;
@@ -41,7 +41,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         public DoSort _DoSort;
         private Front_END.Front_END front_END;
         protected Base_Debug _Debug;
-
+        public bool isSorted;
 
         /// <summary>
         /// Event, that is risen upon sort start.
@@ -53,19 +53,13 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         public event EventHandler FileSorted;
 
 
-        protected Base_Sort(Base_Debug debug ,Front_END.Front_END front_END, string path = "unsorted.txt", Order_Enum order = Order_Enum.ASCENDING)
+        protected Base_Sort(Base_Debug debug, Front_END.Front_END front_END, string path = "unsorted.txt", Order_Enum order = Order_Enum.ASCENDING)
         {
             this._Debug = debug;
             this.front_END = front_END;
             this.filePath = path;
             this.list = ReadFile(path);
             this.order_Enum = order;
-            //string cont = "";
-            //foreach (var item in list)
-            //{
-            //    cont += "[" + item + "]";
-            //}
-            //System.Console.WriteLine("Content: {" + cont + "}");
         }
 
         /// <summary>
@@ -117,7 +111,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             }
 
             // This will surely create ambiguity for user, thus, it has to be implemented differently!
-        //  list = _list as List<T>;
+            //  list = _list as List<T>;
             return _list as List<T>;
         }
 
@@ -161,15 +155,16 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             {
                 OnFileSorted(new FileSortedEventArgs(startedSortingDate));
                 _Debug.AddMessage<object>(new Message<object>("Creating sorted file [" + filePath + "_sorted" + ".txt" + "]"));
+                Thread.Sleep(100);
                 using (StreamWriter sr = new StreamWriter(filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt", false, Encoding.UTF8))
                 {
-                    foreach (var item in list)
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        sr.WriteLine(item);
+                        sr.WriteLine(list[i]);
                     }
                 }
                 string sortType = "";
-                MessageBox.Show("Sorted file[" + filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt" + "] \n has been created, \n using " + GetType().Name.Substring(0,GetType().Name.Length-2) + ".");
+                MessageBox.Show("Sorted file[" + filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt" + "] \n has been created, \n using " + GetType().Name.Substring(0, GetType().Name.Length - 2) + ".");
                 Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
                 {
                     front_END.SortButton.Content = "Cont_Init";
@@ -282,17 +277,19 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
 
         protected virtual void OnFileSorted(FileSortedEventArgs e)
         {
+            this.isSorted = true;
             _Debug.AddMessage<object>(new Message<object>(MethodBase.GetCurrentMethod().Name, MessageType_ENUM.Event));
             FileSorted?.Invoke(this, e);
-            _Debug.AddMessage<object>(new Message<object>("Started: ["+e.startDateTime.TimeOfDay+"]", MessageType_ENUM.________));
-            _Debug.AddMessage<object>(new Message<object>("Finished: ["+e.createdDateTime.TimeOfDay+"]", MessageType_ENUM.________));
+            _Debug.AddMessage<object>(new Message<object>("Started: [" + e.startDateTime.TimeOfDay + "]", MessageType_ENUM.________));
+            _Debug.AddMessage<object>(new Message<object>("Finished: [" + e.createdDateTime.TimeOfDay + "]", MessageType_ENUM.________));
             _Debug.AddMessage<object>(new Message<object>("Delta: [" + e.GetDeltaTime() + "]", MessageType_ENUM.________));
         }
 
         public Exception CouldNotBeSorted()
         {
             Exception ex = new Exception("File could not be sorted.[" + Enum.GetName(typeof(Order_Enum), this.order_Enum) + "]: [" + this.GetType().Name + "]");
-            var task = Task.Run(async () => {
+            var task = Task.Run(async () =>
+            {
                 await _Debug.AddMessage_Assync<object>(new Message<object>(ex.Message, MessageType_ENUM.Exception));
             });
             task.Wait();

@@ -122,7 +122,6 @@ namespace DAS_SDK.MVC.Model.Sorts
             list[left] = tmp;
         }
 
-
         private void UpdateUserInterface(int cycleOfSort, Front_END.Front_END front_END)
         {
             // I dont know, if is safe to do front end public due to thread unsafe exceptions.

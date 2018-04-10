@@ -107,6 +107,7 @@
     <Compile Include="MVC\Model\Front_and_List\MyFront.cs" />
     <Compile Include="MVC\Model\Front_and_List\MyList.cs" />
     <Compile Include="MVC\Model\Front_END\Front_END.cs" />
+    <Compile Include="MVC\Model\Search\Search_Base\Search_Base.cs" />
     <Compile Include="MVC\Model\Sorts\Base_Sort\Base_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Base_Sort\Sort_Events_Args.cs" />
     <Compile Include="MVC\Model\Sorts\Bubble_Sort.cs" />

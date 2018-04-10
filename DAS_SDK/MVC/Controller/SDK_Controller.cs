@@ -12,6 +12,7 @@ using DAS_SDK.MVC.Model.Sorts;
 using System.Threading;
 using DAS_SDK.MVC.Model.Debug;
 using DAS_SDK.PGL_2;
+using DAS_SDK.MVC.Model.Search;
 
 namespace DAS_SDK.MVC.Controller
 {
@@ -19,7 +20,6 @@ namespace DAS_SDK.MVC.Controller
     {
         private List<Window> windowRefList;
         private Base_Debug debug;
-
 
         MyFront<int?> myFront;
         MyFront<string> myStrFront;
@@ -38,6 +38,8 @@ namespace DAS_SDK.MVC.Controller
         Select_Sort<float> select_Sort;
         Quick_Soort<int> quick_Sort;
         Radix_Sort<int> radix_Sort;
+
+        Search_Base<int> search_Base;
 
         public SDK_Controller(Window windowRef, Thread _UI_Thread)
         {
@@ -66,8 +68,10 @@ namespace DAS_SDK.MVC.Controller
 
             Thread _threadRd = new Thread(delegate ()
             {
-                radix_Sort = new Radix_Sort<int>(debug, front_END);
-                radix_Sort.Sort();
+                //radix_Sort = new Radix_Sort<int>(debug, front_END);
+                //radix_Sort.Sort();
+                search_Base = new Search_Base<int>("unsorted_sorted.txt", debug, front_END, 554, Sort_Type.Quick);
+                search_Base.GetSort().Sort();
             });
             _threadRd.Start();
 
@@ -136,8 +140,8 @@ namespace DAS_SDK.MVC.Controller
             //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)),"300.txt",0,
             //    Enums.DAS_FORMAT_ENUM.TXT_1ROW_NVALS_COMMA_SEPARTOR);
 
-            file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100,3)*10)));
-            file_Generator.CreateAndFill<int>();
+            //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100,3)*10)));
+            //file_Generator.CreateAndFill<int>();
 
             if (false)
             {

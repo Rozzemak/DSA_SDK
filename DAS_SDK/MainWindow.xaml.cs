@@ -128,7 +128,7 @@ namespace DAS_SDK
         {
             SetForegroundWindow(GetConsoleWindow());
             left = left + (int)this.Width + 200;
-            SetWindowPos(GetConsoleWindow(), IntPtr.Zero, left, top, (int)this.Width, (int)this.Height,0);
+            SetWindowPos(GetConsoleWindow(), IntPtr.Zero, left, top, (int)(this.Width*1.3), (int)this.Height,0);
         }
     }
 }

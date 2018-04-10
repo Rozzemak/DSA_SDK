@@ -37,11 +37,15 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         public List<T> list;
         public Order_Enum order_Enum;
         public string filePath;
-        protected delegate List<T> DoSort(List<T> list, Front_END.Front_END front_END);
-        protected DoSort _DoSort;
+        public delegate List<T> DoSort(List<T> list, Front_END.Front_END front_END);
+        public DoSort _DoSort;
         private Front_END.Front_END front_END;
         protected Base_Debug _Debug;
 
+
+        /// <summary>
+        /// Event, that is risen upon sort start.
+        /// </summary>
         public event EventHandler FileSortStart;
         /// <summary>
         /// Event, that is risen upon file sorted. (Successfully)
@@ -285,7 +289,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             _Debug.AddMessage<object>(new Message<object>("Delta: [" + e.GetDeltaTime() + "]", MessageType_ENUM.________));
         }
 
-        protected Exception CouldNotBeSorted()
+        public Exception CouldNotBeSorted()
         {
             Exception ex = new Exception("File could not be sorted.[" + Enum.GetName(typeof(Order_Enum), this.order_Enum) + "]: [" + this.GetType().Name + "]");
             var task = Task.Run(async () => {

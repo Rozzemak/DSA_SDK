@@ -42,7 +42,7 @@
     <OutputPath>bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <WarningLevel>2</WarningLevel>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -107,7 +107,8 @@
     <Compile Include="MVC\Model\Front_and_List\MyFront.cs" />
     <Compile Include="MVC\Model\Front_and_List\MyList.cs" />
     <Compile Include="MVC\Model\Front_END\Front_END.cs" />
-    <Compile Include="MVC\Model\Search\Search_Base\Search_Base.cs" />
+    <Compile Include="MVC\Model\Search\Binary_Search.cs" />
+    <Compile Include="MVC\Model\Search\Base_Search\Base_Search.cs" />
     <Compile Include="MVC\Model\Sorts\Base_Sort\Base_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Base_Sort\Sort_Events_Args.cs" />
     <Compile Include="MVC\Model\Sorts\Bubble_Sort.cs" />

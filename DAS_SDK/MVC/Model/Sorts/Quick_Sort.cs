@@ -11,11 +11,11 @@ using DAS_SDK.MVC.Model.Debug;
 
 namespace DAS_SDK.MVC.Model.Sorts
 {
-    class Quick_Soort<T> : Base_Sort<T> where T : IComparable
+    class Quick_Sort<T> : Base_Sort<T> where T : IComparable
     {
         Random random = new Random();
 
-        public Quick_Soort(Base_Debug debug, Front_END.Front_END front_END, string path = "sorted.txt")
+        public Quick_Sort(Base_Debug debug, Front_END.Front_END front_END, string path = "sorted.txt")
             : base(debug, front_END, path)
         {
             if (double.TryParse(list[0].ToString(), out double test))

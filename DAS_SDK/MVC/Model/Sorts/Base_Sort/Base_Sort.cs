@@ -186,7 +186,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         /// <returns>True if elements in list are sorted by according order.</returns>
         public bool IsSorted(Order_Enum order = Order_Enum.ASCENDING)
         {
-            _Debug.AddMessage<object>(new Message<object>("Is sorted check[" + Enum.GetName(typeof(Order_Enum), order) + "]: [" + this.GetType().Name + "]"));
+            _Debug.AddMessage<object>(new Message<object>("Is sorted check[" + Enum.GetName(typeof(Order_Enum), order) + "]: [" + this.GetType().Name.Substring(0,this.GetType().Name.Length-2) + "]"));
             switch (order)
             {
                 case Order_Enum.ASCENDING:

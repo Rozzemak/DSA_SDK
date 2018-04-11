@@ -36,10 +36,12 @@ namespace DAS_SDK.MVC.Controller
 
         Bubble_Sort<int> bubble_Sort;
         Select_Sort<float> select_Sort;
-        Quick_Soort<int> quick_Sort;
+        Quick_Sort<int> quick_Sort;
         Radix_Sort<int> radix_Sort;
 
-        Search_Base<int> search_Base;
+        //Base_Search<int> search_Base;
+
+        Binary_Search<int> binary_Search;
 
         public SDK_Controller(Window windowRef, Thread _UI_Thread)
         {
@@ -73,11 +75,12 @@ namespace DAS_SDK.MVC.Controller
             {
                 //radix_Sort = new Radix_Sort<int>(debug, front_END);
                 //radix_Sort.Sort();
-                file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)), "file2.txt");
-                file_Generator.CreateAndFill<int>();
+                
+                //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)), "file2.txt");
+                //file_Generator.CreateAndFill<int>();
 
-                search_Base = new Search_Base<int>("file2.txt", debug, front_END, -2129115644, Sort_Type.Quick);
-                search_Base.Search();
+                binary_Search = new Binary_Search<int>("file2.txt", debug, front_END, 267841804, Sort_Type.Quick);
+                binary_Search.Search();
             });
             _threadRd.Start();
 

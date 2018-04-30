@@ -13,6 +13,8 @@ using System.Threading;
 using DAS_SDK.MVC.Model.Debug;
 using DAS_SDK.PGL_2;
 using DAS_SDK.MVC.Model.Search;
+using DAS_SDK.MVC.Model.Collisions;
+using DAS_SDK.MVC.Model.Trees.Base_Tree;
 
 namespace DAS_SDK.MVC.Controller
 {
@@ -42,6 +44,7 @@ namespace DAS_SDK.MVC.Controller
         //Base_Search<int> search_Base;
 
         Binary_Search<int> binary_Search;
+        ConvexHull convexHull;
 
         public SDK_Controller(Window windowRef, Thread _UI_Thread)
         {
@@ -70,20 +73,59 @@ namespace DAS_SDK.MVC.Controller
 
 
 
+            //radix_Sort = new Radix_Sort<int>(debug, front_END);
+            //radix_Sort.Sort();
+
+            //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)), "file2.txt");
+            //file_Generator.CreateAndFill<int>();
+
+            //binary_Search = new Binary_Search<int>("file2_sorted.txt", debug, front_END, 267841804, Sort_Type.Quick);
+            //binary_Search.Search();
+
+            /*
+            List<Point> points = new List<Point> {
+                new Point(1,2),
+                new Point(2,1),
+                new Point(3,2),
+                new Point(5,2),
+                new Point(5,3),
+                new Point(1000,1000)
+            };
+
+            convexHull = new ConvexHull(front_END);  
+            foreach (var item in convexHull.GetConvexHull(points))
+            {
+                debug.AddMessage<object>(new Message<object>(item.ToString()));
+            }
+       */
 
             Thread _threadRd = new Thread(delegate ()
             {
-                //radix_Sort = new Radix_Sort<int>(debug, front_END);
-                //radix_Sort.Sort();
-                
-                //file_Generator = new File_Generator_Base<object>(((ulong)(Math.Pow(100, 3) * 10)), "file2.txt");
-                //file_Generator.CreateAndFill<int>();
 
-                binary_Search = new Binary_Search<int>("file2.txt", debug, front_END, 267841804, Sort_Type.Quick);
-                binary_Search.Search();
+                Node<string> node3 = new Node<string>("2", null);
+                Node<string> node2 = new Node<string>("3", node3);
+                Node<string> node1 = new Node<string>("4", node2);
+                Node<string> node = new Node<string>("1", node1);
+                List<Node<string>> nodes = new List<Node<string>>
+                {
+                    node3,
+                    node2,
+                    node1,
+                    node
+                };
+                for (int i = nodes.Count-1; i >= 0; i--)
+                {
+                    debug.AddMessage<string>(new Message<object>(
+                        "Content: [" + nodes[i].Content + "] " +
+                        "Child Order:[" + nodes[i].IsInOrder(nodes[i]) +"]", MessageType_ENUM.Indifferent));
+                }
             });
             _threadRd.Start();
 
+
+
+            // XML_Lib xML_Lib = new XML_Lib(debug);
+            // xML_Lib.ReadAll();
 
             //Dog alik = new Dog("Haf");
             //alik.Make_a_Sound();

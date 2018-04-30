@@ -31,9 +31,20 @@ namespace DAS_SDK.MVC.Model.Search
         protected Sort_Type sort_Type;
         protected Base_Debug _Debug;
 
+        public event EventHandler Searching;
+
         protected delegate List<T> DoSearch(List<T> sortedList, Front_END.Front_END front_END);
         protected DoSearch _DoSearch;
         private object sort = new object();
+
+        /// <summary>
+        /// This event is raised upon searching start. (After file is sorted || if it is sorted)
+        /// </summary>
+        protected event EventHandler SearchStart;
+        /// <summary>
+        /// This event is raide upon searching end. (After result are found.)
+        /// </summary>
+        protected event EventHandler SearchEnd;
 
         public Base_Search(string path, Base_Debug debug, Front_END.Front_END front_END, T searched, Sort_Type sort_Type)
         {

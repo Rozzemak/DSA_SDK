@@ -84,9 +84,9 @@ namespace DAS_SDK.MVC.Model.Front_END
             }
 
             //progressBar = Grid_Root_ControlRef.FindName("Progress_Bar") as ProgressBar;
-            debug.AddMessage<object>(new Message<object>("Progress bar name: [" + progressBar.Name + "]", MessageType_ENUM.Indifferent));
-            debug.AddMessage<object>(new Message<object>("Grid name: [" + Grid_Root_ControlRef.Name +"]", MessageType_ENUM.Indifferent));
-            debug.AddMessage<object>(new Message<object>("InitController_Button name: [" + SortButton.Name + "]", MessageType_ENUM.Indifferent));
+            //debug.AddMessage<object>(new Message<object>("Progress bar name: [" + progressBar.Name + "]", MessageType_ENUM.Indifferent));
+            //debug.AddMessage<object>(new Message<object>("Grid name: [" + Grid_Root_ControlRef.Name +"]", MessageType_ENUM.Indifferent));
+            //debug.AddMessage<object>(new Message<object>("InitController_Button name: [" + SortButton.Name + "]", MessageType_ENUM.Indifferent));
         }
 
 

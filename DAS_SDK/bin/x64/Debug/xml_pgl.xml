@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<root>
+		<library>
+			<song id="1" genre="Rock" length="3:50" >
+				<name>10 ammedmends</name>
+				<interpret>God</interpret>
+				<album>Bible</album>
+			</song>
+			<song id="2" genre="Jazz" length="4:20" >
+				<name>Sad and Alone</name>
+				<interpret>Every Jazz interpret</interpret>
+				<album>Bible</album>
+			</song>
+			<song id="3" genre="Classic" length="1:30" >
+				<name>@#%*(!)*#</name>
+				<interpret>Mozart</interpret>
+				<album>For King</album>
+			</song>
+		</library>
+	</root>

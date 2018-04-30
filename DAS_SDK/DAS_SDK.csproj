@@ -20,7 +20,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -100,6 +100,7 @@
     <Compile Include="MVC\Controller\Front_END_Controller.cs" />
     <Compile Include="MVC\Controller\SDK_Controller.cs" />
     <Compile Include="MVC\Enums\DAS_ENUM.cs" />
+    <Compile Include="MVC\Model\Collisions\ConvexHull.cs" />
     <Compile Include="MVC\Model\Debug\Base_Debug.cs" />
     <Compile Include="MVC\Model\Debug\Message.cs" />
     <Compile Include="MVC\Model\File_Generator\File_Generator_Base.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="MVC\Model\Front_and_List\MyFront.cs" />
     <Compile Include="MVC\Model\Front_and_List\MyList.cs" />
     <Compile Include="MVC\Model\Front_END\Front_END.cs" />
+    <Compile Include="MVC\Model\Search\Base_Search\Search_Event_Args.cs" />
     <Compile Include="MVC\Model\Search\Binary_Search.cs" />
     <Compile Include="MVC\Model\Search\Base_Search\Base_Search.cs" />
     <Compile Include="MVC\Model\Sorts\Base_Sort\Base_Sort.cs" />
@@ -115,8 +117,12 @@
     <Compile Include="MVC\Model\Sorts\Quick_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Radix_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Select_Sort.cs" />
+    <Compile Include="MVC\Model\Trees\Base_Tree\Base_Tree.cs" />
+    <Compile Include="MVC\Model\Trees\Base_Tree\Node.cs" />
     <Compile Include="PGL_2\Adapter.cs" />
     <Compile Include="PGL_2\Decorator.cs" />
+    <Compile Include="PGL_2\XML_Lib.cs" />
+    <Compile Include="PGL_2\XML_Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -24,6 +24,13 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         DESC_LENGTH
     }
 
+    enum SortState
+    {
+        Unsorted,
+        Sorting,
+        Sorted
+    }
+
     static class Ext
     {
         public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> self)
@@ -42,7 +49,11 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         private Front_END.Front_END front_END;
         protected Base_Debug _Debug;
         public bool isSorted;
-
+        
+        /// <summary>
+        /// This enum tells you sortstate of this sort.
+        /// </summary>
+        public SortState sortState;
         /// <summary>
         /// Event, that is risen upon sort start.
         /// </summary>
@@ -51,7 +62,6 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         /// Event, that is risen upon file sorted. (Successfully)
         /// </summary>
         public event EventHandler FileSorted;
-
 
         protected Base_Sort(Base_Debug debug, Front_END.Front_END front_END, string path = "unsorted.txt", Order_Enum order = Order_Enum.ASCENDING)
         {
@@ -129,7 +139,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             Thread t = new Thread(delegate ()
             {
                 _Debug.AddMessage<object>(new Message<object>("Thread for sort started."));
-                OnSortingStart(new SortingStartedEventArgs());
+                OnSortingStart(new SortingStartedEventArgs<T>(this));
                 startedSortingDate = DateTime.Now;
                 _DoSort(this.list, front_END);
             });
@@ -153,7 +163,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             }
             else
             {
-                OnFileSorted(new FileSortedEventArgs(startedSortingDate));
+                OnFileSorted(new FileSortedEventArgs<T>(startedSortingDate,this));
                 _Debug.AddMessage<object>(new Message<object>("Creating sorted file [" + filePath + "_sorted" + ".txt" + "]"));
                 Thread.Sleep(100);
                 using (StreamWriter sr = new StreamWriter(filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt", false, Encoding.UTF8))
@@ -222,7 +232,6 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
                 case Order_Enum.CANNOT_BE_SPECIFIED:
                     return false;
                 case Order_Enum.ASC_LENGTH:
-
                     break;
                 case Order_Enum.DESC_LENGTH:
                     break;
@@ -268,14 +277,15 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             return false;
         }
 
-        protected virtual void OnSortingStart(SortingStartedEventArgs e)
+        protected virtual void OnSortingStart(SortingStartedEventArgs<T> e)
         {
             _Debug.AddMessage<object>(new Message<object>(MethodBase.GetCurrentMethod().Name, MessageType_ENUM.Event));
             FileSortStart?.Invoke(this, e);
-            _Debug.AddMessage<object>(new Message<object>(e.startDateTime.TimeOfDay));
+            _Debug.AddMessage<object>(new Message<object>(e.startDateTime.TimeOfDay, MessageType_ENUM.________));
+            _Debug.AddMessage<object>(new Message<object>("Sort state: "+ sortState.ToString(), MessageType_ENUM.________));
         }
 
-        protected virtual void OnFileSorted(FileSortedEventArgs e)
+        protected virtual void OnFileSorted(FileSortedEventArgs<T> e)
         {
             this.isSorted = true;
             _Debug.AddMessage<object>(new Message<object>(MethodBase.GetCurrentMethod().Name, MessageType_ENUM.Event));
@@ -283,6 +293,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
             _Debug.AddMessage<object>(new Message<object>("Started: [" + e.startDateTime.TimeOfDay + "]", MessageType_ENUM.________));
             _Debug.AddMessage<object>(new Message<object>("Finished: [" + e.createdDateTime.TimeOfDay + "]", MessageType_ENUM.________));
             _Debug.AddMessage<object>(new Message<object>("Delta: [" + e.GetDeltaTime() + "]", MessageType_ENUM.________));
+            _Debug.AddMessage<object>(new Message<object>("Sort state: " + sortState.ToString(), MessageType_ENUM.________));
         }
 
         public Exception CouldNotBeSorted()

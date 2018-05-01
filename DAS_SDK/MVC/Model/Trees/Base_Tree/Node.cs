@@ -10,56 +10,23 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree
     class Node<T> where T : IComparable
     {
         public T Content = default(T);
-        private Node<T> nodeBranch;
-        private int Level;
+        public List<Node<T>> ConnectedNodes;
+        public Node<T> ParentNode;
+        public int Level;
 
-        public Node(T type, Node<T> nodeBranch){
-            this.Content = type;
-            this.nodeBranch = nodeBranch;
-            UpdateLevel(this);
-        }
-
-        public void UpdateLevel(Node<T> node)
+        public Node(T content, List<Node<T>> connectedNodes)
         {
-            while(node.nodeBranch != null && node.Level >= node.nodeBranch.Level)
-            {
-                node.nodeBranch.Level++;
-                UpdateLevel(node.nodeBranch);
-            }
+            this.Content = content;
+            this.ConnectedNodes = connectedNodes;
         }
 
-        public bool IsInOrder(Node<T> node, Order_Enum order_Enum = Order_Enum.ASCENDING)
+
+        public Node(T content, Node<T> parentNode, List<Node<T>> connectedNodes)
         {
-            switch (order_Enum)
-            {
-                case Order_Enum.ASCENDING:
-                    if (node.nodeBranch != null)
-                    {   
-                        if (node.Content.CompareTo(node.nodeBranch.Content) <= 0)
-                        {
-                            IsInOrder(node.nodeBranch);
-                        }
-                        else return false;
-                    }
-                    break;
-                case Order_Enum.DESCENDING:
-                    if (node.nodeBranch != null)
-                    {
-                        if (node.Content.CompareTo(node.nodeBranch.Content) >= 0)
-                        {
-                            IsInOrder(node.nodeBranch);
-                        }
-                        else return false;
-                    }
-                    break;
-                case Order_Enum.CANNOT_BE_SPECIFIED:
-                    break;
-                case Order_Enum.ASC_LENGTH:
-                    break;
-                case Order_Enum.DESC_LENGTH:
-                    break;
-            }
-            return true;
+            this.Content = content;
+            this.ParentNode = parentNode;
+            this.ConnectedNodes = connectedNodes;
         }
+
     }
 }

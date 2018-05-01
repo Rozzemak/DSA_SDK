@@ -102,10 +102,11 @@ namespace DAS_SDK.MVC.Controller
             Thread _threadRd = new Thread(delegate ()
             {
 
-                Node<string> node3 = new Node<string>("2", null);
-                Node<string> node2 = new Node<string>("3", node3);
-                Node<string> node1 = new Node<string>("4", node2);
-                Node<string> node = new Node<string>("1", node1);
+                
+                Node<string> node3 = new Node<string>("4", null);
+                Node<string> node2 = new Node<string>("3", new List<Node<string>>{ node3 });
+                Node<string> node1 = new Node<string>("2", new List<Node<string>> { node2 });
+                Node<string> node = new Node<string>("1", new List<Node<string>> { node1 });
                 List<Node<string>> nodes = new List<Node<string>>
                 {
                     node3,
@@ -113,12 +114,26 @@ namespace DAS_SDK.MVC.Controller
                     node1,
                     node
                 };
+
+                Root<string> root = new Root<string>("rootContent1");
+
+                List<BranchMasterNode<string>> Bnodes = new List<BranchMasterNode<string>> {
+                    new BranchMasterNode<string>("BContent1", new List<Node<string>>{ root as Node<string> })
+                };
+
                 for (int i = nodes.Count-1; i >= 0; i--)
                 {
                     debug.AddMessage<string>(new Message<object>(
-                        "Content: [" + nodes[i].Content + "] " +
-                        "Child Order:[" + nodes[i].IsInOrder(nodes[i]) +"]", MessageType_ENUM.Indifferent));
+                        "Type: [" + nodes[i].GetType().Name.Substring(0, nodes[i].GetType().Name.Length-2) + "] " +
+                        "Content: [" + nodes[i].Content + "] "));
                 }
+                foreach (var item in root.BranchMasterNodes)
+                {
+                    debug.AddMessage<string>(new Message<object>(
+                       "Type: [" + item.GetType().Name.Substring(0, item.GetType().Name.Length - 2) + "] " +
+                       "Content: [" + item.Content + "] "));
+                }
+
             });
             _threadRd.Start();
 

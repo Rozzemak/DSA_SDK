@@ -11,7 +11,7 @@ namespace DAS_SDK.MVC.Model.Search
 {
     class Binary_Search<T> : Base_Search<T> where T : IComparable
     {
-        public Binary_Search(string path, Base_Debug debug, Front_END.Front_END front_END, T searched, Sort_Type sort_Type)
+        public Binary_Search(string path, Base_Debug debug, Sort_Front_END front_END, T searched, Sort_Type sort_Type)
             : base(path, debug, front_END, searched, sort_Type)
         {
             if (double.TryParse(GetSort().list[0].ToString(), out double test))
@@ -33,7 +33,7 @@ namespace DAS_SDK.MVC.Model.Search
             }
         }
 
-        private List<T> B_Search(List<T> list, Front_END.Front_END front_END)
+        private List<T> B_Search(List<T> list, Sort_Front_END front_END)
         {
             bool result = false;
             if (GetSort().IsSorted())
@@ -66,7 +66,7 @@ namespace DAS_SDK.MVC.Model.Search
             else throw CouldNotBeFound();
         }
 
-        protected bool Search_Logic(Front_END.Front_END front_END)
+        protected bool Search_Logic(Front_END.Base_Front_END front_END)
         {
             int min = 0, max = GetSort().list.Count -1;
             while (min <= max)

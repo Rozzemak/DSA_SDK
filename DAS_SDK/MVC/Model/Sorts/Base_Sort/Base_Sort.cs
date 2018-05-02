@@ -44,9 +44,9 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         public List<T> list;
         public Order_Enum order_Enum;
         public string filePath;
-        public delegate List<T> DoSort(List<T> list, Front_END.Front_END front_END);
+        public delegate List<T> DoSort(List<T> list, Sort_Front_END front_END);
         public DoSort _DoSort;
-        private Front_END.Front_END front_END;
+        private Sort_Front_END front_END;
         protected Base_Debug _Debug;
         public bool isSorted;
         
@@ -63,7 +63,7 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         /// </summary>
         public event EventHandler FileSorted;
 
-        protected Base_Sort(Base_Debug debug, Front_END.Front_END front_END, string path = "unsorted.txt", Order_Enum order = Order_Enum.ASCENDING)
+        protected Base_Sort(Base_Debug debug, Sort_Front_END front_END, string path = "unsorted.txt", Order_Enum order = Order_Enum.ASCENDING)
         {
             this._Debug = debug;
             this.front_END = front_END;

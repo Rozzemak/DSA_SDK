@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAS_SDK.MVC.Model.Trees.Base_Tree.Node;
 
-namespace DAS_SDK.MVC.Model.Trees.Base_Tree
+namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
 {
     class BranchMasterNode<T> : Node<T> where T : IComparable
     {

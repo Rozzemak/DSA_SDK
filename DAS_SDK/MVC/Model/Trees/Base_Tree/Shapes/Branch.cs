@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAS_SDK.MVC.Model.Trees.Base_Tree.Node;
 
-namespace DAS_SDK.MVC.Model.Trees.Base_Tree
+namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes
 {
     class Branch<T> where T : IComparable
     {
@@ -27,11 +28,11 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree
             for (int i = 0; i < BranchNodes.Count; i++)
             {
                 if (//BranchNodes[i].ParentNode.ConnectedNodes.Count != 0 &&
-                    BranchNodes[i].GetType() != typeof(Root<T>) && BranchNodes[i].GetType() != typeof(BranchMasterNode<T>) 
-                    // BranchNodes[i].ConnectedNodes.Count == 1
+                    BranchNodes[i].GetType() != typeof(Root<T>) && BranchNodes[i].GetType() != typeof(BranchMasterNode<T>) &&
+                    BranchNodes[i].ConnectedNodes.Count == 1
                     )
                 {
-                    BranchNodes[i] = new Leaf<T>(BranchNodes[i].Content, BranchNodes[i].ParentNode);
+                    BranchNodes[i] = new Leaf<T>(BranchNodes[i].Content, BranchNodes[i].ConnectedNodes[0]);
                     Leaves.Add(BranchNodes[i] as Leaf<T>);
                 }
             }
@@ -54,6 +55,7 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree
             }
             if (!contains) throw new Exception("Invalid Branch" +
                                  "Branch is supposed to have one MasterNode, and has to be continuous");
+            Leaves.Clear();
             FindLeaves();
         }
     }

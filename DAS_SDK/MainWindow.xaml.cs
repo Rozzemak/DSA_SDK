@@ -124,11 +124,18 @@ namespace DAS_SDK
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr opt_hWnd, int x, int y, int cx, int cy, uint uFlags);
 
+        
         public void SetConsolePosition(int left, int top)
         {
             SetForegroundWindow(GetConsoleWindow());
-            left = left + (int)this.Width + 200;
-            SetWindowPos(GetConsoleWindow(), IntPtr.Zero, left, top, (int)(this.Width*1.3), (int)this.Height,0);
+            //left = left + (int)this.Width + 200;
+            SetWindowPos(GetConsoleWindow(), IntPtr.Zero, left, top+ (int)this.Height, (int)(this.Width*1.3), (int)this.Height,0);
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            //Rest, do this later... It will loose control while moving console win && mouse button down.
+            //SetWindowPos(GetConsoleWindow(), IntPtr.Zero, (int)this.Left, (int)this.Top + (int)this.Height, (int)(this.Width * 1.3), (int)this.Height, 0);
         }
     }
 }

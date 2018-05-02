@@ -8,12 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using DAS_SDK.MVC.Model.Debug;
+using DAS_SDK.MVC.Model.Front_END;
 
 namespace DAS_SDK.MVC.Model.Sorts
 {
     class Bubble_Sort<T> : Base_Sort<T> where T : IComparable
     {
-        public Bubble_Sort(Base_Debug debug,Front_END.Front_END front_END, string path = "sorted.txt")
+        public Bubble_Sort(Base_Debug debug, Sort_Front_END front_END, string path = "sorted.txt")
             : base(debug, front_END, path)
         {
             if (double.TryParse(list[0].ToString(), out double test))
@@ -62,7 +63,7 @@ namespace DAS_SDK.MVC.Model.Sorts
             else throw CouldNotBeSorted();
         }
 
-        private List<T> ObjSort(List<T> list, Front_END.Front_END front_END)
+        private List<T> ObjSort(List<T> list, Sort_Front_END front_END)
         {
             if (!IsSorted())
             {
@@ -88,7 +89,7 @@ namespace DAS_SDK.MVC.Model.Sorts
             else throw CouldNotBeSorted();
         }
 
-        private void BubbleLogic(Front_END.Front_END front_END)
+        private void BubbleLogic(Sort_Front_END front_END)
         {
             //var gpu = Gpu.Default;
             for (int i = 0; i < list.Count - 1; i++)
@@ -111,7 +112,7 @@ namespace DAS_SDK.MVC.Model.Sorts
            //  });
         }
 
-        private void UpdateUserInterface(int cycleOfSort, Front_END.Front_END front_END)
+        private void UpdateUserInterface(int cycleOfSort, Sort_Front_END front_END)
         {
             // I dont know, if is safe to do front end public due to thread unsafe exceptions.
             if (cycleOfSort % front_END.ProgressValIncrement == 0)

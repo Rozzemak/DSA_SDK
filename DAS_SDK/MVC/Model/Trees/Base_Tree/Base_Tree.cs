@@ -4,77 +4,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAS_SDK.MVC.Model.Trees.Base_Tree.Node;
+using DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes;
 
 namespace DAS_SDK.MVC.Model.Trees.Base_Tree
 {
     class Base_Tree<T> where T : IComparable
     {
-       
+
         public Root<T> Root;
-        public List<Node<T>> SlaveNodes;
-        /*
-       public Base_Tree(Root<T> root){
-           this.Root = root;
-           Root.UpdateLevel(Root);
-       }
+        public List<BranchMasterNode<T>> BranchMasterNodes;
+        public List<Branch<T>> Branches;
+        public List<List<Leaf<T>>> Leaves = new List<List<Leaf<T>>>();
 
-       public Base_Tree(Root<T> root, List<List<Node<T>>> SlaveNodes)
-       {
-           this.Root = root;
-           root.BranchMasterNodes = SlaveNodes;
-       }
+        public Base_Tree(List<Branch<T>> branches, Root<T> root = null)
+        {
+            this.Root = root;
+            this.Branches = branches;
+            UpdateTree();
+        }
 
-       public void UpdateLevel(Node<T> node)
-       {
-           foreach (var _node in NodeBranches)
-           {
-               while (node.ConnectedNodes != null && node.NodeBranches.Count != 0 && node.Level >= _node.Level && node.Level == NodeBranches.Count)
-               {
-                   _node.Level++;
-                   UpdateLevel(_node);
-               }
-           }
-       }
+        /// <summary>
+        /// Updates tree to init leaves, check and update root if its null.
+        /// </summary>
+        public void UpdateTree()
+        {
+            if (Root == null)
+            {
+                // Iterate trough every branch then node and find root if there is not one.
+                foreach (var branch in Branches)
+                {
+                    /* Depreceated?
+                    foreach (var node in branch.BranchNodes)
+                    {
+                        if (node.GetType() == typeof(Root<T>))
+                        {
+                            // If root has already been found, break a tree definition a little and write temporary exception. (Will be fixed someday)
+                            if (Root != null) throw new Exception("There cannot more than one Root in Tree.(For now)");
+                            Root = node as Root<T>;
+                        }
+                    }
+                    */
+                    foreach (var cNode in branch.BranchMasterNode.ConnectedNodes)
+                    {
+                        if (cNode.GetType() == typeof(Root<T>))
+                        {
+                            // If root has already been found, break a tree definition a little and write temporary exception. (Will be fixed someday)
+                            if (Root != null) throw new Exception("There cannot more than one Root in Tree.(For now)");
+                            Root = cNode as Root<T>;
+                        }
+                    }
+                }
+            }
+            // If there is no root... there is no tree.
+            if (Root == null) throw new Exception("Tree has no Root node. One and only one node has to be in branchNodes collection.");
+            Leaves.Clear();
+            foreach (var branch in Branches)
+            {
+                branch.UpdateBranch();
+                Leaves.Add(branch.Leaves);
+            }
+        }
 
-
-
-
-       public bool IsInOrder(Node<T> node, Order_Enum order_Enum = Order_Enum.ASCENDING)
-       {
-           switch (order_Enum)
-           {
-               case Order_Enum.ASCENDING:
-                   foreach (var _node in NodeBranches)
-                   {
-                       if (node.ConnectedNodes != null && node.NodeBranches.Count != 0)
-                       {
-                           if (node.Content.CompareTo(node.NodeBranches.Content) <= 0)
-                           {
-                               IsInOrder(node.ConnectedNodes);
-                           }
-                           else return false;
-                       }
-                   }
-                   break;
-               case Order_Enum.DESCENDING:
-                   if (node.ConnectedNodes != null && node.NodeBranches.Count != 0)
-                   {
-                       if (node.Content.CompareTo(node.NodeBranches.Content) >= 0)
-                       {
-                           IsInOrder(node.ConnectedNodes);
-                       }
-                       else return false;
-                   }
-                   break;
-               case Order_Enum.CANNOT_BE_SPECIFIED:
-                   throw new Exception("Could not be Impl.");
-               case Order_Enum.ASC_LENGTH:
-                   throw new Exception("Could not be Impl(maybe).");
-               case Order_Enum.DESC_LENGTH:
-                   throw new Exception("Could not be Impl(maybe).");
-           }
-           return true;
-       }
-       */
+       
     }
 }

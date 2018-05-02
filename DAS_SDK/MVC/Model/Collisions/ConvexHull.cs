@@ -9,10 +9,10 @@ namespace DAS_SDK.MVC.Model.Collisions
 {
     class ConvexHull
     {
-        Front_END.Front_END front_END;
+        Front_END.Base_Front_END front_END;
         List<Point> points = new List<Point>();
 
-        public ConvexHull(Front_END.Front_END front_END)
+        public ConvexHull(Front_END.Base_Front_END front_END)
         {
             this.front_END = front_END;
         }

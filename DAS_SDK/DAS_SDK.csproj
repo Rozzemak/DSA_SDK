@@ -107,7 +107,9 @@
     <Compile Include="MVC\Model\Front_and_List\CustomArray.cs" />
     <Compile Include="MVC\Model\Front_and_List\MyFront.cs" />
     <Compile Include="MVC\Model\Front_and_List\MyList.cs" />
-    <Compile Include="MVC\Model\Front_END\Front_END.cs" />
+    <Compile Include="MVC\Model\Front_END\Base_Front_END.cs" />
+    <Compile Include="MVC\Model\Front_END\Sort_Front_END.cs" />
+    <Compile Include="MVC\Model\Front_END\Tree_Front_END.cs" />
     <Compile Include="MVC\Model\Search\Base_Search\Search_Event_Args.cs" />
     <Compile Include="MVC\Model\Search\Binary_Search.cs" />
     <Compile Include="MVC\Model\Search\Base_Search\Base_Search.cs" />
@@ -118,11 +120,12 @@
     <Compile Include="MVC\Model\Sorts\Radix_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Select_Sort.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Base_Tree.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Branch.cs" />
+    <Compile Include="MVC\Model\Trees\Base_Tree\Shapes\Branch.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\BranchMasterNode.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\Leaf.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\Node.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\Root.cs" />
+    <Compile Include="MVC\Model\Trees\TreeService.cs" />
     <Compile Include="PGL_2\Adapter.cs" />
     <Compile Include="PGL_2\Decorator.cs" />
     <Compile Include="PGL_2\XML_Lib.cs" />
@@ -144,8 +147,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

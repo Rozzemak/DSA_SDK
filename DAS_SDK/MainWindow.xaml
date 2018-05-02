@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAS_SDK"
         mc:Ignorable="d"
-        Title="DAS_SDK" Height="350" Width="525">
+        Title="DAS_SDK" Height="350" Width="525" LocationChanged="Window_LocationChanged">
     <Grid Name="Root_Grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="211*"/>

@@ -15,6 +15,8 @@ using DAS_SDK.PGL_2;
 using DAS_SDK.MVC.Model.Search;
 using DAS_SDK.MVC.Model.Collisions;
 using DAS_SDK.MVC.Model.Trees.Base_Tree;
+using DAS_SDK.MVC.Model.Trees.Base_Tree.Node;
+using DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes;
 
 namespace DAS_SDK.MVC.Controller
 {
@@ -29,7 +31,9 @@ namespace DAS_SDK.MVC.Controller
 
         File_Generator_Base<object> file_Generator;
 
-        Front_END front_END;
+        Sort_Front_END sort_Front_END;
+        Tree_Front_END<string> tree_Front_END;
+
 
         public MyFront<object> myObjFront;
         public MyList<object> myObjList;
@@ -53,7 +57,8 @@ namespace DAS_SDK.MVC.Controller
 
             debug = new Base_Debug();
 
-            front_END = new Front_END(windowRefList, _UI_Thread, debug);
+            sort_Front_END = new Sort_Front_END(windowRefList, _UI_Thread, debug);
+            tree_Front_END = new Tree_Front_END<string>(windowRefList, _UI_Thread, debug);
 
             debug.AddMessage<string>(new Message<object>("Controller_Init", MessageType_ENUM.Indifferent));
 
@@ -114,12 +119,11 @@ namespace DAS_SDK.MVC.Controller
                     node1,
                     node
                 };
-
                 Root<string> root = new Root<string>("rootContent1");
 
                 List<BranchMasterNode<string>> Bnodes = new List<BranchMasterNode<string>> {
-                    new BranchMasterNode<string>("BNodeContent1", new List<Node<string>>{ root as Node<string>, node2, node })
-                    ,new BranchMasterNode<string>("BNodeContent2", new List<Node<string>>{ root as Node<string>, node3 })
+                    new BranchMasterNode<string>("BMNodeContent1", new List<Node<string>>{ root as Node<string>, node })
+                    //,new BranchMasterNode<string>("BNodeContent2", new List<Node<string>>{ root as Node<string>, node3 })
                 };
 
                 foreach (var item in root.BranchMasterNodes)
@@ -136,12 +140,19 @@ namespace DAS_SDK.MVC.Controller
                 }
 
                 Branch<string> bTest = new Branch<string>(new List<Node<string>> {
-                    Bnodes[0].ConnectedNodes[0],
-                    Bnodes[0].ConnectedNodes[1]},
+                    Bnodes[0].ConnectedNodes[1],
+                    node2},
                     root.BranchMasterNodes[0]);
-                debug.AddMessage<string>(new Message<object>("BranchMasterNodes: "+ (root.BranchMasterNodes.Count)));
                 debug.AddMessage<string>(new Message<object>("Leaves Count: "+ bTest.Leaves.Count));
-
+                foreach (var item in bTest.BranchNodes)
+                {
+                    debug.AddMessage<string>(new Message<object>("BranchNodes Content : " + item.Content));
+                }
+                foreach (var item in bTest.Leaves)
+                {
+                    debug.AddMessage<string>(new Message<object>("Leaves Content : " + item.Content));
+                }
+                debug.AddMessage<string>(new Message<object>("BMaster Content : " + bTest.BranchMasterNode.Content));
             });
             _threadRd.Start();
 

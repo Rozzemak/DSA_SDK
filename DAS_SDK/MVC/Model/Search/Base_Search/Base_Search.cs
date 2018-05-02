@@ -1,4 +1,5 @@
 ﻿using DAS_SDK.MVC.Model.Debug;
+using DAS_SDK.MVC.Model.Front_END;
 using DAS_SDK.MVC.Model.Sorts;
 using DAS_SDK.MVC.Model.Sorts.Base_Sort;
 using System;
@@ -27,13 +28,13 @@ namespace DAS_SDK.MVC.Model.Search
 
         protected List<T> matches = new List<T>();
         protected T searched = default(T);
-        protected Front_END.Front_END front_END;
+        protected Sort_Front_END front_END;
         protected Sort_Type sort_Type;
         protected Base_Debug _Debug;
 
         public event EventHandler Searching;
 
-        protected delegate List<T> DoSearch(List<T> sortedList, Front_END.Front_END front_END);
+        protected delegate List<T> DoSearch(List<T> sortedList, Sort_Front_END front_END);
         protected DoSearch _DoSearch;
         private object sort = new object();
 
@@ -46,7 +47,7 @@ namespace DAS_SDK.MVC.Model.Search
         /// </summary>
         protected event EventHandler SearchEnd;
 
-        public Base_Search(string path, Base_Debug debug, Front_END.Front_END front_END, T searched, Sort_Type sort_Type)
+        public Base_Search(string path, Base_Debug debug, Sort_Front_END front_END, T searched, Sort_Type sort_Type)
         {
             this.sort_Type = sort_Type;
             this._Debug = debug;
@@ -92,7 +93,7 @@ namespace DAS_SDK.MVC.Model.Search
             t.Start();
         }
 
-        protected void UpdateUserInterface(int cycleOfSort, Front_END.Front_END front_END)
+        protected void UpdateUserInterface(int cycleOfSort, Sort_Front_END front_END)
         {
             // I dont know, if is safe to do front end public due to thread unsafe exceptions.
             if (cycleOfSort % front_END.ProgressValIncrement == 0)

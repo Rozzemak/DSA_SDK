@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAS_SDK.MVC.Model.Trees.Base_Tree
+namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
 {
     class Node<T> where T : IComparable
     {

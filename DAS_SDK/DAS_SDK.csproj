@@ -119,10 +119,10 @@
     <Compile Include="MVC\Model\Sorts\Select_Sort.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Base_Tree.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Branch.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\BranchMasterNode.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Leaf.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Node.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Root.cs" />
+    <Compile Include="MVC\Model\Trees\Base_Tree\Node\BranchMasterNode.cs" />
+    <Compile Include="MVC\Model\Trees\Base_Tree\Node\Leaf.cs" />
+    <Compile Include="MVC\Model\Trees\Base_Tree\Node\Node.cs" />
+    <Compile Include="MVC\Model\Trees\Base_Tree\Node\Root.cs" />
     <Compile Include="PGL_2\Adapter.cs" />
     <Compile Include="PGL_2\Decorator.cs" />
     <Compile Include="PGL_2\XML_Lib.cs" />
@@ -144,6 +144,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -156,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MVC\ViewIsWPF\" />
+    <Folder Include="VisualModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />

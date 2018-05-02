@@ -8,7 +8,7 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree
 {
     class Leaf<T> : Node<T> where T : IComparable
     {
-        Node<T> Parent;
+        public Node<T> Parent;
 
         /// <summary>
         /// Leaf as Node without breanches, ... 

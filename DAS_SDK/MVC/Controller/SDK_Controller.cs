@@ -102,11 +102,11 @@ namespace DAS_SDK.MVC.Controller
             Thread _threadRd = new Thread(delegate ()
             {
 
-                
-                Node<string> node3 = new Node<string>("4", null);
-                Node<string> node2 = new Node<string>("3", new List<Node<string>>{ node3 });
-                Node<string> node1 = new Node<string>("2", new List<Node<string>> { node2 });
-                Node<string> node = new Node<string>("1", new List<Node<string>> { node1 });
+
+                Node<string> node3 = new Node<string>("3", null);
+                Node<string> node2 = new Node<string>("2", new List<Node<string>> {  });
+                Node<string> node1 = new Node<string>("1", new List<Node<string>> { });
+                Node<string> node = new Node<string>("0", new List<Node<string>> {node2});
                 List<Node<string>> nodes = new List<Node<string>>
                 {
                     node3,
@@ -118,21 +118,29 @@ namespace DAS_SDK.MVC.Controller
                 Root<string> root = new Root<string>("rootContent1");
 
                 List<BranchMasterNode<string>> Bnodes = new List<BranchMasterNode<string>> {
-                    new BranchMasterNode<string>("BContent1", new List<Node<string>>{ root as Node<string> })
+                    new BranchMasterNode<string>("BNodeContent1", new List<Node<string>>{ root as Node<string>, node2, node })
+                    ,new BranchMasterNode<string>("BNodeContent2", new List<Node<string>>{ root as Node<string>, node3 })
                 };
 
-                for (int i = nodes.Count-1; i >= 0; i--)
-                {
-                    debug.AddMessage<string>(new Message<object>(
-                        "Type: [" + nodes[i].GetType().Name.Substring(0, nodes[i].GetType().Name.Length-2) + "] " +
-                        "Content: [" + nodes[i].Content + "] "));
-                }
                 foreach (var item in root.BranchMasterNodes)
                 {
                     debug.AddMessage<string>(new Message<object>(
                        "Type: [" + item.GetType().Name.Substring(0, item.GetType().Name.Length - 2) + "] " +
                        "Content: [" + item.Content + "] "));
+                    foreach (var item2 in item.ConnectedNodes)
+                    {
+                        debug.AddMessage<string>(new Message<object>(
+                      "Type: [" + item2.GetType().Name.Substring(0, item2.GetType().Name.Length - 2) + "] " +
+                      "Content: [" + item2.Content + "] ", MessageType_ENUM.________));
+                    }
                 }
+
+                Branch<string> bTest = new Branch<string>(new List<Node<string>> {
+                    Bnodes[0].ConnectedNodes[0],
+                    Bnodes[0].ConnectedNodes[1]},
+                    root.BranchMasterNodes[0]);
+                debug.AddMessage<string>(new Message<object>("BranchMasterNodes: "+ (root.BranchMasterNodes.Count)));
+                debug.AddMessage<string>(new Message<object>("Leaves Count: "+ bTest.Leaves.Count));
 
             });
             _threadRd.Start();

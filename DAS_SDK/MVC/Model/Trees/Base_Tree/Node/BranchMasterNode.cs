@@ -18,12 +18,18 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree
             {
                 foreach (var node in connectedNodes)
                 {
-                    if (node as Root<T> != null) root = node as Root<T>;
+                    if (node as Root<T> != null)
+                    {
+                        this.root = node as Root<T>;
+                    }
                     break;
                 }
-                if (root == null) throw new Exception("Root has to be in connected nodes (in Branch)");
+                if (this.root == null) throw new Exception("Root has to be in connected nodes (in Branch)");
+                else {
+                    this.root.BranchMasterNodes.Add(this);
+                }
             }
-            else throw new Exception("Use leaf instead," +
+            else throw new Exception("Use Leaf instead," +
                 " BranchMasterNode is linker between root and branches(notLeaves).");
         }
     }

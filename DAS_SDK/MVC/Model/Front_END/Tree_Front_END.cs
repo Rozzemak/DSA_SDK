@@ -102,71 +102,49 @@ namespace DAS_SDK.MVC.Model.Front_END
 
         public void UpdateTrees()
         {
-            int x = 0;
-            int y = 0;
+            int lastNodeX = 0;
+            int lastNodeY = 0;
+            int temp = 0;
             Matrix matrix = new Matrix();
             foreach (var tree in TreeService.Trees)
             {
-                config.AddContent(new Button()
-                {
-                    Width = 40,
-                    Height = 40,
-                    Content = tree.Root.Content.ToString(),
-                    Visibility = Visibility.Visible,
-                    RenderTransformOrigin = new Point(10, 10),
-                    Background = Brushes.Crimson,
-                    Margin = new Thickness(1, 1, 1, 1),
-                    RenderTransform = new TranslateTransform(x, 0)
-                });
-                x += 45;
-                y += 45;
+                AddNodeToDraw(tree.Root, 40, Brushes.Crimson, lastNodeX, lastNodeY);
+                //Debug.AddMessage<object>(new Message<object>("Graphical Node Added"));
                 foreach (var branch in tree.Branches) {
-                    config.AddContent(new Button()
-                    {
-                        Width = 35,
-                        Height = 35,
-                        Content = branch.BranchMasterNode.Content.ToString(),
-                        Visibility = Visibility.Visible,
-                        RenderTransformOrigin = new Point(10, 10),
-                        Background = Brushes.Crimson,
-                        Margin = new Thickness(1,1,1,1),
-                        RenderTransform = new TranslateTransform(x, y)
-                    });
-                    x += 40;
-                    y += 40;
+                    AddNodeToDraw(branch.BranchMasterNode, 35, Brushes.Yellow, lastNodeX, lastNodeY = 40);
+                    temp = lastNodeY;
                     foreach (var node in branch.BranchNodes)
                     {
+                        //lastNodeX *= xOffset++;
                         if (node as Leaf<T> != null)
                         {
-                            config.AddContent(new Button()
-                            {
-                                Width = 25,
-                                Height = 25,
-                                Content = node.Content,
-                                Visibility = Visibility.Visible,
-                                Margin = new Thickness(1, 1, 1, 1),
-                                Background = Brushes.LightGreen,
-                                RenderTransform = new TranslateTransform(x, y)
-                            });
+                            AddNodeToDraw(node, 20, Brushes.LightGreen, lastNodeX, lastNodeY += 25);
+                            lastNodeY = temp;
+                            lastNodeX += 30;
                         } 
                         else
                         {
-                            config.AddContent(new Button()
-                            {
-                                Width = 25,
-                                Height = 25,
-                                Content = node.Content,
-                                Visibility = Visibility.Visible,
-                                Margin = new Thickness(1, 1, 1, 1),
-                                Background = Brushes.AliceBlue,
-                                RenderTransform = new TranslateTransform(x, y)
-                            });
-                        }
-                        x += 30;
-                        Debug.AddMessage<object>(new Message<object>("Graphical Node Added"));
+                            AddNodeToDraw(node, 25, Brushes.AliceBlue, lastNodeX, lastNodeY += 35);
+                        }                       
                     }
+                   
                 }
             }
+        }
+
+        private void AddNodeToDraw(Node<T> node, int size, Brush brush, int lastNodeX, int lastNodeY)
+        {
+            config.AddContent(new Button()
+            {
+                Width = size,
+                Height = size,
+                Content = node.Content.ToString(),
+                Visibility = Visibility.Visible,
+                Background = brush,
+                Margin = new Thickness(1, 1, 1, 1),
+                RenderTransform = new TranslateTransform(lastNodeX, lastNodeY)
+            });
+            lastNodeX += size;
         }
     }
 }

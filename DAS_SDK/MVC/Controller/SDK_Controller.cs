@@ -111,11 +111,13 @@ namespace DAS_SDK.MVC.Controller
             Thread _threadRd = new Thread(delegate ()
             {
 
-
-                Node<string> node3 = new Node<string>("3", null);
+                Node<string> node6 = new Node<string>("6", new List<Node<string>> { });
+                Node<string> node5 = new Node<string>("5", new List<Node<string>> { node6 });
+                Node<string> node4 = new Node<string>("4", new List<Node<string>> { node5 });
+                Node<string> node3 = new Node<string>("3", new List<Node<string>> { });
                 Node<string> node2 = new Node<string>("2", new List<Node<string>> { });
-                Node<string> node1 = new Node<string>("1", new List<Node<string>> { });
-                Node<string> node = new Node<string>("0", new List<Node<string>> { node2 });
+                Node<string> node1 = new Node<string>("1", new List<Node<string>> { node2, node3 });
+                Node<string> node = new Node<string>("0", new List<Node<string>> { node1 });
                 List<Node<string>> nodes = new List<Node<string>>
                 {
                     node3,
@@ -126,7 +128,7 @@ namespace DAS_SDK.MVC.Controller
                 Root<string> root = new Root<string>("rootContent1");
 
                 List<BranchMasterNode<string>> Bnodes = new List<BranchMasterNode<string>> {
-                    new BranchMasterNode<string>("BMNodeContent1", new List<Node<string>>{ root as Node<string>, node })
+                    new BranchMasterNode<string>("BMNodeContent1", new List<Node<string>>{ root as Node<string>, node, node4 })
                     //,new BranchMasterNode<string>("BNodeContent2", new List<Node<string>>{ root as Node<string>, node3 })
                 };
 
@@ -145,7 +147,7 @@ namespace DAS_SDK.MVC.Controller
 
                 Branch<string> bTest = new Branch<string>(new List<Node<string>> {
                     Bnodes[0].ConnectedNodes[1],
-                    node2},
+                    node2,node1,node3, node4, node5, node6},
                     root.BranchMasterNodes[0]);
                 debug.AddMessage<string>(new Message<object>("Leaves Count: " + bTest.Leaves.Count));
                 foreach (var item in bTest.BranchNodes)
@@ -160,13 +162,6 @@ namespace DAS_SDK.MVC.Controller
                 base_Tree = new Base_Tree<string>(new List<Branch<string>>() { bTest });
                 Trees.Add(base_Tree);
 
-                foreach (var item in base_Tree.Branches)
-                {
-                    foreach (var bnode in item.BranchNodes)
-                    {
-                        debug.AddMessage<string>(new Message<object>("Bnode"));
-                    }
-                }
                 Dispatcher.FromThread(_UI_Thread).Invoke(() =>
                 {
                     treeService.AddTree(base_Tree);

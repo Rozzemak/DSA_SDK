@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
+using System.Windows.Threading;
 
 namespace DAS_SDK
 {
@@ -31,11 +32,48 @@ namespace DAS_SDK
 
         public MainWindow()
         {
+            Console.WriteLine("Loading, please wait.");
+            new Thread(() => CheckWindow()).Start();
             InitializeComponent();
             FrontAddType_CB.Visibility = Visibility.Visible;
             ListAddType_CB.Visibility = Visibility.Hidden;
-            // Managed();
         }
+
+        private void CheckWindow()
+        {
+            bool loaded = false;
+            bool stop = false;
+            Thread th = new Thread(() => 
+            {
+                while (true)
+                {
+                    Thread.Sleep(25);
+                    Console.Write("█");
+                    if (stop)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n Window_Loaded! \n ");
+                        Console.ResetColor();
+                        break;
+                    }
+                }
+            });
+            th.Start();
+            while (true)
+            {
+                Thread.Sleep(1); 
+                this.Dispatcher.Invoke(() =>
+                {
+                    if ((Application.Current.MainWindow).IsLoaded) loaded = true;
+                });
+                if (loaded)
+                {
+                    stop = true;
+                    break;
+                }
+            }
+        }
+
 
         private void AddVal(object sender, RoutedEventArgs e)
         {
@@ -93,7 +131,8 @@ namespace DAS_SDK
         private void Cont_InitButton_Click(object sender, RoutedEventArgs e)
         {
             SetConsolePosition((int)this.Left, (int)this.Top);
-            Thread _thread = new Thread(delegate () {
+            Thread _thread = new Thread(delegate ()
+            {
                 _Controller = new SDK_Controller(this, this.Dispatcher.Thread);
             });
             // _thread.Start();
@@ -124,12 +163,12 @@ namespace DAS_SDK
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr opt_hWnd, int x, int y, int cx, int cy, uint uFlags);
 
-        
+
         public void SetConsolePosition(int left, int top)
         {
             SetForegroundWindow(GetConsoleWindow());
             //left = left + (int)this.Width + 200;
-            SetWindowPos(GetConsoleWindow(), IntPtr.Zero, left, top+ (int)this.Height, (int)(this.Width*1.3), (int)this.Height,0);
+            SetWindowPos(GetConsoleWindow(), IntPtr.Zero, left, top + (int)this.Height, (int)(this.Width * 1.3), (int)this.Height, 0);
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)

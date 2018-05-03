@@ -12,9 +12,9 @@ namespace DAS_SDK.MVC.Model.Trees
     {
         public List<Base_Tree<T>> Trees = new List<Base_Tree<T>>();
 
-        public TreeService(List<Base_Tree<T>> trees)
+        public TreeService()
         {
-            this.Trees = Trees;
+
         }
 
         public void AddTree(Base_Tree<T> tree)

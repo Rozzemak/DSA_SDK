@@ -17,6 +17,8 @@ using DAS_SDK.MVC.Model.Collisions;
 using DAS_SDK.MVC.Model.Trees.Base_Tree;
 using DAS_SDK.MVC.Model.Trees.Base_Tree.Node;
 using DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes;
+using DAS_SDK.MVC.Model.Trees;
+using System.Windows.Threading;
 
 namespace DAS_SDK.MVC.Controller
 {
@@ -28,10 +30,13 @@ namespace DAS_SDK.MVC.Controller
         MyFront<int?> myFront;
         MyFront<string> myStrFront;
         MyList<int?> myList;
+        Base_Tree<string> base_Tree;
+        List<Base_Tree<string>> Trees = new List<Base_Tree<string>>();
 
         File_Generator_Base<object> file_Generator;
 
         Sort_Front_END sort_Front_END;
+        TreeService<string> treeService = new TreeService<string>();
         Tree_Front_END<string> tree_Front_END;
 
 
@@ -58,7 +63,6 @@ namespace DAS_SDK.MVC.Controller
             debug = new Base_Debug();
 
             sort_Front_END = new Sort_Front_END(windowRefList, _UI_Thread, debug);
-            tree_Front_END = new Tree_Front_END<string>(windowRefList, _UI_Thread, debug);
 
             debug.AddMessage<string>(new Message<object>("Controller_Init", MessageType_ENUM.Indifferent));
 
@@ -109,9 +113,9 @@ namespace DAS_SDK.MVC.Controller
 
 
                 Node<string> node3 = new Node<string>("3", null);
-                Node<string> node2 = new Node<string>("2", new List<Node<string>> {  });
+                Node<string> node2 = new Node<string>("2", new List<Node<string>> { });
                 Node<string> node1 = new Node<string>("1", new List<Node<string>> { });
-                Node<string> node = new Node<string>("0", new List<Node<string>> {node2});
+                Node<string> node = new Node<string>("0", new List<Node<string>> { node2 });
                 List<Node<string>> nodes = new List<Node<string>>
                 {
                     node3,
@@ -143,7 +147,7 @@ namespace DAS_SDK.MVC.Controller
                     Bnodes[0].ConnectedNodes[1],
                     node2},
                     root.BranchMasterNodes[0]);
-                debug.AddMessage<string>(new Message<object>("Leaves Count: "+ bTest.Leaves.Count));
+                debug.AddMessage<string>(new Message<object>("Leaves Count: " + bTest.Leaves.Count));
                 foreach (var item in bTest.BranchNodes)
                 {
                     debug.AddMessage<string>(new Message<object>("BranchNodes Content : " + item.Content));
@@ -153,10 +157,26 @@ namespace DAS_SDK.MVC.Controller
                     debug.AddMessage<string>(new Message<object>("Leaves Content : " + item.Content));
                 }
                 debug.AddMessage<string>(new Message<object>("BMaster Content : " + bTest.BranchMasterNode.Content));
+                base_Tree = new Base_Tree<string>(new List<Branch<string>>() { bTest });
+                Trees.Add(base_Tree);
+
+                foreach (var item in base_Tree.Branches)
+                {
+                    foreach (var bnode in item.BranchNodes)
+                    {
+                        debug.AddMessage<string>(new Message<object>("Bnode"));
+                    }
+                }
+                Dispatcher.FromThread(_UI_Thread).Invoke(() =>
+                {
+                    treeService.AddTree(base_Tree);
+                    tree_Front_END = new Tree_Front_END<string>(windowRefList, _UI_Thread, debug, treeService);
+                });
             });
             _threadRd.Start();
 
 
+            
 
             // XML_Lib xML_Lib = new XML_Lib(debug);
             // xML_Lib.ReadAll();

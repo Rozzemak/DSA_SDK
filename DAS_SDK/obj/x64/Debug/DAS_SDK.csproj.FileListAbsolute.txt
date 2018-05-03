@@ -16,7 +16,6 @@ C:\Users\Rozze\OneDrive\Dokumenty\Visual Studio 2017\Projects\DAS_SYK_MAREK_SLAV
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\bin\x64\Debug\DAS_SDK.exe.config
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\bin\x64\Debug\DAS_SDK.exe
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\bin\x64\Debug\DAS_SDK.pdb
-C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\DAS_SDK.csprojResolveAssemblyReference.cache
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\MainWindow.g.cs
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\App.g.cs
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\DAS_SDK_MarkupCompile.cache

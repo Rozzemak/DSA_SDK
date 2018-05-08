@@ -27,3 +27,4 @@ C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\DAS_SDK.csproj.Generate
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\DAS_SDK.csproj.CoreCompileInputs.cache
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\DAS_SDK.exe
 C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\DAS_SDK.pdb
+C:\Users\Rozze\Desktop\PGL\DSA_SDK\DAS_SDK\obj\x64\Debug\DAS_SDK.csprojResolveAssemblyReference.cache

@@ -38,5 +38,26 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
             }
         }
 
+        public int UpdateLevels(Node<T> node, int level = 0)
+        {
+            node.Level = level++;
+            foreach (var cNode in node.ConnectedNodes)
+            {
+                if (node.ParentNode == null) { UpdateLevels(cNode, level++); }
+                else
+                {
+                    if (cNode != ParentNode && cNode.Level == 0 && node.ParentNode.Level + 1 == node.Level)
+                    {
+                        UpdateLevels(cNode, level++);
+                    }
+                    else if (node as Leaf<T> != null)
+                    {
+                        //this.Level = level++;
+                        return 1;
+                    }
+                }
+            }
+            return 0;
+        }
     }
 }

@@ -55,6 +55,22 @@ namespace DAS_SDK.MVC.Controller
         Binary_Search<int> binary_Search;
         ConvexHull convexHull;
 
+        public void WriteLevels()
+        {
+            foreach (var item in treeService.GetCollection())
+            {
+                debug.AddMessage<object>(new Message<object>(item.Root.Level.ToString() + " _ " + item.Root.GetType().Name + " _ " + item.Root.Content));
+                foreach (var branches in item.Branches)
+                {
+                    debug.AddMessage<object>(new Message<object>(branches.BranchMasterNode.Level.ToString() + " _ " + branches.BranchMasterNode.GetType().Name + " _ " + branches.BranchMasterNode.Content));
+                    foreach (var bNode in branches.BranchNodes)
+                    {
+                        debug.AddMessage<object>(new Message<object>(bNode.Level.ToString() + " _ " + bNode.GetType().Name + " _ " + bNode.Content));
+                    }
+                }
+            }
+        }
+
         public SDK_Controller(Window windowRef, Thread _UI_Thread)
         {
             windowRefList = new List<Window>();
@@ -118,6 +134,9 @@ namespace DAS_SDK.MVC.Controller
                 Node<string> node2 = new Node<string>("2", new List<Node<string>> { });
                 Node<string> node1 = new Node<string>("1", new List<Node<string>> { node2, node3 });
                 Node<string> node = new Node<string>("0", new List<Node<string>> { node1 });
+
+
+
                 List<Node<string>> nodes = new List<Node<string>>
                 {
                     node3,
@@ -131,6 +150,21 @@ namespace DAS_SDK.MVC.Controller
                     new BranchMasterNode<string>("BMNodeContent1", new List<Node<string>>{ root as Node<string>, node, node4 })
                     //,new BranchMasterNode<string>("BNodeContent2", new List<Node<string>>{ root as Node<string>, node3 })
                 };
+
+                Bnodes[0].ParentNode = root;
+                node.ParentNode = Bnodes[0];
+                node1.ParentNode = node;
+                node2.ParentNode = node1;
+                node3.ParentNode = node1;
+                node4.ParentNode = Bnodes[0];
+                node5.ParentNode = node4;
+                node6.ParentNode = node5;
+
+
+                foreach (var bnode in Bnodes)
+                {
+                    bnode.ParentNode = root;
+                }
 
                 foreach (var item in root.BranchMasterNodes)
                 {
@@ -164,14 +198,16 @@ namespace DAS_SDK.MVC.Controller
 
                 Dispatcher.FromThread(_UI_Thread).Invoke(() =>
                 {
-                    treeService.AddTree(base_Tree);
+                    treeService.AddToCollection(base_Tree);
                     tree_Front_END = new Tree_Front_END<string>(windowRefList, _UI_Thread, debug, treeService);
+                   
                 });
+
+                WriteLevels();
             });
             _threadRd.Start();
 
 
-            
 
             // XML_Lib xML_Lib = new XML_Lib(debug);
             // xML_Lib.ReadAll();

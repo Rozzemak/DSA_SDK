@@ -64,8 +64,53 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree
                 branch.UpdateBranch();
                 Leaves.Add(branch.Leaves);
             }
+            UpdateLevels();
         }
 
-       
+        public void UpdateLevels(int initLevel = 0)
+        {
+            Root.UpdateLevels(Root, 0);
+            
+
+           
+        
+
+        
+            /*
+            foreach (var branch in Branches)
+            {
+                foreach (var branchNode in branch.BranchNodes)
+                {
+                    switch (branchNode.GetType())
+                    {
+                        case Type nodeTcheck when branchNode.GetType() == typeof(Root<T>):
+                            branchNode.Level = 0;
+                            break;
+                        case Type nodeTcheck when branchNode.GetType() == typeof(Node<T>):
+                            branchNode.Level = 1;
+                            bool IsItRoot = false;
+                            while (IsItRoot)
+                            {
+                                foreach (var cNode in branchNode.ConnectedNodes)
+                                {
+
+                                }
+                            }
+                            break;
+                        case Type nodeTcheck when branchNode.GetType() == typeof(Leaf<T>):
+                            this.color = Brushes.LightGreen;
+                            break;
+                        case Type nodeTcheck when branchNode.GetType() == typeof(BranchMasterNode<T>):
+                            this.color = Brushes.Yellow;
+                            break;
+                    }
+                }
+               
+            } */
+        }
+
+
     }
+
+
 }

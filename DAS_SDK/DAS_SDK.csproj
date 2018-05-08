@@ -110,6 +110,8 @@
     <Compile Include="MVC\Model\Front_END\Base_Front_END.cs" />
     <Compile Include="MVC\Model\Front_END\Sort_Front_END.cs" />
     <Compile Include="MVC\Model\Front_END\Tree_Front_END.cs" />
+    <Compile Include="MVC\Model\Interfaces\IDrawable.cs" />
+    <Compile Include="MVC\Model\Interfaces\IServise.cs" />
     <Compile Include="MVC\Model\Search\Base_Search\Search_Event_Args.cs" />
     <Compile Include="MVC\Model\Search\Binary_Search.cs" />
     <Compile Include="MVC\Model\Search\Base_Search\Base_Search.cs" />
@@ -120,11 +122,13 @@
     <Compile Include="MVC\Model\Sorts\Radix_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Select_Sort.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Base_Tree.cs" />
+    <Compile Include="MVC\Model\Trees\Drawable\DrawableNode.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Shapes\Branch.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\BranchMasterNode.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\Leaf.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\Node.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\Root.cs" />
+    <Compile Include="MVC\Model\Trees\Drawable\DrawableService.cs" />
     <Compile Include="MVC\Model\Trees\TreeService.cs" />
     <Compile Include="PGL_2\Adapter.cs" />
     <Compile Include="PGL_2\Decorator.cs" />

@@ -21,18 +21,20 @@ using DAS_SDK.MVC.Model.Trees.Base_Tree.Node;
 using System.Windows.Markup;
 using DAS_SDK.MVC.Model.Trees;
 using DAS_SDK.MVC.Model.Trees.Drawable;
+using System.Windows.Threading;
 
 namespace DAS_SDK.MVC.Model.Front_END
 {
     class Config_Tree_Front_END
     {
         public Window RenderWindow;
-        public Grid MainGrid = new Grid() {
+        public Grid MainGrid = new Grid()
+        {
             Language = XmlLanguage.GetLanguage("en"),
             Visibility = Visibility.Visible,
             MinWidth = 640,
             MinHeight = 480,
-            Background = Brushes.Red        
+            Background = Brushes.Red
         };
         public Grid ScrollGrid = new Grid()
         {
@@ -43,8 +45,9 @@ namespace DAS_SDK.MVC.Model.Front_END
             Background = Brushes.WhiteSmoke
         };
         public List<UIElement> UiElements_Tree = new List<UIElement>();
-        public ScrollViewer ScrollViewer = new ScrollViewer() {
-            
+        public ScrollViewer ScrollViewer = new ScrollViewer()
+        {
+
         };
 
         public Config_Tree_Front_END(Window renderWin)
@@ -79,8 +82,8 @@ namespace DAS_SDK.MVC.Model.Front_END
         TreeService<T> TreeService;
         DrawableService<T> DrawableService = new DrawableService<T>();
 
-
-        Window RenderWindow = new Window() {
+        Window RenderWindow = new Window()
+        {
             Width = 800,
             Height = 600,
             MinWidth = 640,
@@ -118,7 +121,7 @@ namespace DAS_SDK.MVC.Model.Front_END
             {
                 if (index < DrawableService.GetCollection().Count - 1)
                 {
-                    config.AddContent(new Button()
+                    Button btn = new Button()
                     {
                         Width = _drawableNode.Width,
                         Height = _drawableNode.Height,
@@ -126,11 +129,17 @@ namespace DAS_SDK.MVC.Model.Front_END
                         Visibility = Visibility.Visible,
                         Background = _drawableNode.color,
                         Margin = new Thickness(1, 1, 1, 1),
-                        RenderTransform = new TranslateTransform(_drawableNode.X*index, _drawableNode.Y*index),
-                        
-                    });
+                        RenderTransform = new TranslateTransform(TreeDrawLevel(_drawableNode, index), _drawableNode.Y * _drawableNode.Node.Level),
+                    };
+                    config.AddContent(btn);          
+                    btn.MouseLeftButtonDown += Btn_MouseLeftButtonDown;
                 }
             }
+        }
+
+        private void Btn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {          
+                Debug.AddMessage<object>(new Message<object>("move"));          
         }
 
         private void UpdateTreesToDraw()
@@ -139,25 +148,37 @@ namespace DAS_SDK.MVC.Model.Front_END
             foreach (var tree in TreeService.GetCollection())
             {
                 a = 40;
-                AddNodeToDraw(new DrawableNode<T>(tree.Root, a+5, a+5, 0, a, a));
+                AddNodeToDraw(new DrawableNode<T>(tree.Root, a + 15, a + 15, 0, a, a));
                 foreach (var branch in tree.Branches)
                 {
-                    a = 35;
-                    AddNodeToDraw(new DrawableNode<T>(branch.BranchMasterNode, a+5, a+5, 0, a, a));
+                    a = 40;
+                    AddNodeToDraw(new DrawableNode<T>(branch.BranchMasterNode, a + 15, a + 15, 0, a, a));
                     foreach (var node in branch.BranchNodes)
                     {
                         if (node as Leaf<T> != null)
                         {
-                            a = 20;
-                            AddNodeToDraw(new DrawableNode<T>(node, a, a, 0, a+5, a+5));
+                            a = 40;
+                            AddNodeToDraw(new DrawableNode<T>(node, a + 15, a + 15, 0, a, a));
                         }
                         else
                         {
-                            a = 25;
-                            AddNodeToDraw(new DrawableNode<T>(node, a, a, 0, a+5, a+5));
+                            a = 40;
+                            AddNodeToDraw(new DrawableNode<T>(node, a + 15, a + 15, 0, a, a));
                         }
                     }
                 }
+            }
+        }
+
+        private int TreeDrawLevel(DrawableNode<T> dNode, int index)
+        {
+            if (dNode.Node.Level % 2 == 1)
+            {
+                return ((int)dNode.X + dNode.Width * 2);
+            }
+            else
+            {
+                return ((int)dNode.X - dNode.Width * 2);
             }
         }
 

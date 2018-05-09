@@ -127,13 +127,13 @@ namespace DAS_SDK.MVC.Controller
             Thread _threadRd = new Thread(delegate ()
             {
 
-                Node<string> node6 = new Node<string>("6", new List<Node<string>> { });
-                Node<string> node5 = new Node<string>("5", new List<Node<string>> { node6 });
-                Node<string> node4 = new Node<string>("4", new List<Node<string>> { node5 });
-                Node<string> node3 = new Node<string>("3", new List<Node<string>> { });
-                Node<string> node2 = new Node<string>("2", new List<Node<string>> { });
-                Node<string> node1 = new Node<string>("1", new List<Node<string>> { node2, node3 });
-                Node<string> node = new Node<string>("0", new List<Node<string>> { node1 });
+                Node<string> node6 = new Node<string>("6", new List<Node<string>> { });//leaf lvl 5
+                Node<string> node5 = new Node<string>("5", new List<Node<string>> { node6 }); //node lvl 4
+                Node<string> node4 = new Node<string>("4", new List<Node<string>> { node5 }); //node lvl 3
+                Node<string> node3 = new Node<string>("3", new List<Node<string>> { }); //Leaf lvl 4
+                Node<string> node2 = new Node<string>("2", new List<Node<string>> { }); //Leaf lvl 4
+                Node<string> node1 = new Node<string>("1", new List<Node<string>> { node2, node3 }); //node lvl3
+                Node<string> node = new Node<string>("0", new List<Node<string>> { node1 }); //node lvl2
 
 
 

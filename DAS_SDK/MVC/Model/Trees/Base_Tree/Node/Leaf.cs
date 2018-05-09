@@ -20,7 +20,9 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
         public Leaf(T content, Node<T> parent , List<Node<T>> nodeBranches = null)
             : base(content, nodeBranches = null)
         {
+            if (parent == null) throw new Exception("Leaf has to have parent node!");
             this.Parent = parent;
+            Parent.ConnectedNodes.Add(this);
 
         }
     }

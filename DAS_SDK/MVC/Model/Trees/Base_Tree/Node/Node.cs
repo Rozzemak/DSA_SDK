@@ -38,22 +38,24 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
             }
         }
 
-        public int UpdateLevels(Node<T> node, int level = 0)
+        public int UpdateLevels(Node<T> node, int level)
         {
-            node.Level = level++;
-            foreach (var cNode in node.ConnectedNodes)
+            // This alg was created merely by think/try/observe method. May be very laggy! ...
+            //node.Level = level++;
+            foreach (Node<T> cNode in node.ConnectedNodes)
             {
-                if (node.ParentNode == null) { UpdateLevels(cNode, level++); }
+                if (node as Root<T> != null) { UpdateLevels(cNode, level++); }
                 else
                 {
-                    if (cNode != ParentNode && cNode.Level == 0 && node.ParentNode.Level + 1 == node.Level)
+                    if (node.Level == 0) node.Level = level++;
+                    //  && node.ParentNode.Level + 1 == node.Level /-> rethink this.. 
+                    if (cNode != node.ParentNode && cNode.Level == 0)
                     {
                         UpdateLevels(cNode, level++);
                     }
-                    else if (node as Leaf<T> != null)
+                    if ((cNode as Leaf<T>) != null && (cNode as Leaf<T>).Level == 0)
                     {
-                        //this.Level = level++;
-                        return 1;
+                        (cNode as Leaf<T>).Level = (cNode as Leaf<T>).Parent.Level + 1;
                     }
                 }
             }

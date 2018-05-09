@@ -131,38 +131,38 @@ namespace DAS_SDK.MVC.Model.Front_END
                         Margin = new Thickness(1, 1, 1, 1),
                         RenderTransform = new TranslateTransform(TreeDrawLevel(_drawableNode, index), _drawableNode.Y * _drawableNode.Node.Level),
                     };
-                    config.AddContent(btn);          
+                    config.AddContent(btn);
                     btn.MouseLeftButtonDown += Btn_MouseLeftButtonDown;
                 }
             }
         }
 
         private void Btn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {          
-                Debug.AddMessage<object>(new Message<object>("move"));          
+        {
+            Debug.AddMessage<object>(new Message<object>("move"));
         }
 
         private void UpdateTreesToDraw()
         {
-            int a = 40;
+            int a = 0;
             foreach (var tree in TreeService.GetCollection())
             {
-                a = 40;
+                a = 45;
                 AddNodeToDraw(new DrawableNode<T>(tree.Root, a + 15, a + 15, 0, a, a));
                 foreach (var branch in tree.Branches)
                 {
-                    a = 40;
+                    a = 25;
                     AddNodeToDraw(new DrawableNode<T>(branch.BranchMasterNode, a + 15, a + 15, 0, a, a));
                     foreach (var node in branch.BranchNodes)
                     {
                         if (node as Leaf<T> != null)
                         {
-                            a = 40;
+                            a = 15;
                             AddNodeToDraw(new DrawableNode<T>(node, a + 15, a + 15, 0, a, a));
                         }
                         else
                         {
-                            a = 40;
+                            a = 20;
                             AddNodeToDraw(new DrawableNode<T>(node, a + 15, a + 15, 0, a, a));
                         }
                     }
@@ -172,15 +172,39 @@ namespace DAS_SDK.MVC.Model.Front_END
 
         private int TreeDrawLevel(DrawableNode<T> dNode, int index)
         {
-            if (dNode.Node.Level % 2 == 1)
+            if (dNode.Node.GetType() != typeof(BranchMasterNode<T>))
             {
-                return ((int)dNode.X + dNode.Width * 2);
+                if (dNode.Node.Level % 2 == 1)
+                {
+                    if (dNode.Node.ParentNode != null && dNode.Node.ParentNode.GetType() == typeof(Node<T>))
+                    { return ((int)dNode.X + dNode.Width * 2); }
+                    else
+                        if (dNode.Node.GetType() != typeof(List<T>))
+                        return ((int)dNode.X - dNode.Width * 2);
+                    else
+                    {
+                        throw new Exception("Undefined render positon");
+                    }
+                }
+                else
+                {
+                    if (dNode.Node.ParentNode != null && dNode.Node.ParentNode.GetType() == typeof(Node<T>))
+                    { return ((int)dNode.X + dNode.Width * 2); }
+                    else
+                        if (dNode.Node.GetType() != typeof(List<T>))
+                        return ((int)dNode.X);
+                    else
+                    {
+                        throw new Exception("Undefined render positon");
+                    }
+                }
             }
             else
             {
-                return ((int)dNode.X - dNode.Width * 2);
+                // Multiply this by branch id maybe modulo check and some correction.
+                return ((int)dNode.X);
             }
-        }
+        }      
 
         public void AddNodeToDraw(DrawableNode<T> drawableNode)
         {

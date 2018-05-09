@@ -130,14 +130,14 @@ namespace DAS_SDK
 
         private void Cont_InitButton_Click(object sender, RoutedEventArgs e)
         {
-            SetConsolePosition((int)this.Left, (int)this.Top);
-            Thread _thread = new Thread(delegate ()
+            SetConsolePosition((int)this.Left, (int)(this.Top+20));
+            Thread _thread = new Thread(()=>
             {
-                _Controller = new SDK_Controller(this, this.Dispatcher.Thread);
+                this.Dispatcher.BeginInvoke(new Action(()=> {
+                    _Controller = new SDK_Controller(this, App.Current.MainWindow.Dispatcher.Thread);
+                }));          
             });
-            // _thread.Start();
-            _Controller = new SDK_Controller(this, this.Dispatcher.Thread);
-            // Console.SetWindowPosition((int)(this.Left + this.Width), (int)this.Top);
+             _thread.Start();
         }
 
         [DllImport("kernel32.dll", ExactSpelling = true)]

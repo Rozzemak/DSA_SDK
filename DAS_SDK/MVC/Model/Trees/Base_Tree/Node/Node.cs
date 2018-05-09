@@ -38,28 +38,39 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
             }
         }
 
-        public int UpdateLevels(Node<T> node, int level)
+        /// <summary>
+        /// Updates level recursively to each node from specified note ignoring parentNode direction.
+        /// Recursive update affects all tree hierarchic children nodes.
+        /// </summary>
+        /// <param name="node">Node from which you want to update levels.</param>
+        /// <param name="level">Recursive pass param, use 0 if root, else use current node level</param>
+        /// <param name="rootFound">If root has been found by recursion pass.</param>
+        public void UpdateLevels(Node<T> node, int level, bool rootFound = false)
         {
             // This alg was created merely by think/try/observe method. May be very laggy! ...
-            //node.Level = level++;
+            //node.Level = level++; => stupid to update level without any check, but leave it here as comment!
+            //So I would stop thiking about this.
             foreach (Node<T> cNode in node.ConnectedNodes)
             {
-                if (node as Root<T> != null) { UpdateLevels(cNode, level++); }
-                else
+                if (node as Root<T> != null) { rootFound = true; UpdateLevels(cNode, level++, true); }
+                else if (rootFound)
                 {
                     if (node.Level == 0) node.Level = level++;
-                    //  && node.ParentNode.Level + 1 == node.Level /-> rethink this.. 
+                    //  && node.ParentNode.Level + 1 == node.Level /-> rethink this?? or is it done?? ..
+                    // Testing required!!
                     if (cNode != node.ParentNode && cNode.Level == 0)
                     {
-                        UpdateLevels(cNode, level++);
+                        UpdateLevels(cNode, level++,true);
                     }
                     if ((cNode as Leaf<T>) != null && (cNode as Leaf<T>).Level == 0)
                     {
                         (cNode as Leaf<T>).Level = (cNode as Leaf<T>).Parent.Level + 1;
                     }
+                } else
+                {
+                    // If not initiated from root, impl needed here.
                 }
             }
-            return 0;
         }
     }
 }

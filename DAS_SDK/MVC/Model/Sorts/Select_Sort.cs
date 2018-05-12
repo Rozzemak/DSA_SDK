@@ -106,12 +106,15 @@ namespace DAS_SDK.MVC.Model.Sorts
         private void UpdateUserInterface(int cycleOfSort, Sort_Front_END front_END)
         {
             // I dont know, if is safe to do front end public due to thread unsafe exceptions.
-            if (cycleOfSort % front_END.ProgressValIncrement == 0)
+            if (front_END.ProgressValIncrement != 0)
             {
-                Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
+                if (cycleOfSort % front_END.ProgressValIncrement == 0)
                 {
-                    front_END.progressBar.Value += front_END.ProgressValIncrement;
-                });
+                    Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
+                    {
+                        front_END.progressBar.Value += front_END.ProgressValIncrement;
+                    });
+                }
             }
         }
     }

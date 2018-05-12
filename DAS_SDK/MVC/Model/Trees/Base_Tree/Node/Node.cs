@@ -22,7 +22,9 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
             foreach (var item in this.ConnectedNodes)
             {
                 item.ConnectedNodes.Add(this);
+                item.ParentNode = this;
             }
+
         }
 
 
@@ -55,7 +57,16 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Node
                 if (node as Root<T> != null) { rootFound = true; UpdateLevels(cNode, level++, true); }
                 else if (rootFound)
                 {
-                    if (node.Level == 0) node.Level = level++;
+                    if (node as BranchMasterNode<T> != null)
+                    {
+                        if (cNode.Level == 0 && cNode != node.ParentNode && node.Level == 0)
+                        {
+                            node.Level= 1;
+                            cNode.Level = node.Level + 1;
+                            UpdateLevels(cNode, cNode.Level, true);
+                        }                
+                    }
+                    if (node.Level == 0) node.Level = node.ParentNode.Level + 1;
                     //  && node.ParentNode.Level + 1 == node.Level /-> rethink this?? or is it done?? ..
                     // Testing required!!
                     if (cNode != node.ParentNode && cNode.Level == 0)

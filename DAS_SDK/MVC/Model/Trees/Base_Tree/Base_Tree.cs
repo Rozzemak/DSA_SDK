@@ -69,13 +69,7 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree
 
         public void UpdateLevels(int initLevel = 0)
         {
-            Root.UpdateLevels(Root, 0);
-            
-
-           
-        
-
-        
+            Root.UpdateLevels(Root, 0);   
             /*
             foreach (var branch in Branches)
             {

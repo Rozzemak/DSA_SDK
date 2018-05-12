@@ -1,2 +1,358 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DAS_SDK.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="16" Y="25.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFAAQAAAAAQBAAQAAAAEAAAAIAAAAAAAAAAARgAIA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_Controller" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DAS_SDK.MVC.Controller.SDK_Controller&lt;T&gt;">
+    <Position X="16" Y="20.5" Width="1.5" />
+    <AssociationLine Name="bubble_Sort" Type="DAS_SDK.MVC.Model.Sorts.Bubble_Sort&lt;T&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.062" Y="20.5" />
+        <Point X="16.062" Y="2.726" />
+        <Point X="17.917" Y="2.726" Type="JumpStart" />
+        <Point X="18.083" Y="2.726" Type="JumpEnd" />
+        <Point X="18.531" Y="2.726" />
+        <Point X="18.531" Y="2.502" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAEAAACAJAEEggCBAACQCgAAAAAAIQAEAAhSABAAAAA=</HashCode>
+      <FileName>MVC\Controller\SDK_Controller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sort_Front_END" />
+      <Field Name="tree_Front_END" />
+      <Field Name="base_Tree" />
+      <Field Name="binary_Search" />
+      <Field Name="file_Generator" />
+      <Field Name="debug" />
+      <Field Name="treeService" />
+      <Field Name="quick_Sort" />
+      <Field Name="radix_Sort" />
+      <Field Name="select_Sort" />
+      <Field Name="bubble_Sort" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Debug.Base_Debug" Collapsed="true">
+    <Position X="8.25" Y="10" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="DAS_SDK.MVC.Model.Debug.Base_Debug.Worker" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\Model\Debug\Base_Debug.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAkAQAAAEAAAAIAAAAAAAABABAAAAAABAAAAAQAAAEA=</HashCode>
+      <FileName>MVC\Model\Debug\Base_Debug.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="messages" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Debug.Message&lt;T&gt;">
+    <Position X="4" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Debug\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.File_Generator.File_Generator_Base&lt;Type&gt;">
+    <Position X="11.75" Y="24" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEIAAACAAAQAAABAACAAAAAAATAAAAQAAAAABAAAA=</HashCode>
+      <FileName>MVC\Model\File_Generator\File_Generator_Base.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Front_END.Base_Front_END">
+    <Position X="12.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAIACAAAAAAAAEAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Front_END\Base_Front_END.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Debug" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Front_END.Sort_Front_END">
+    <Position X="11" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAQQAAAAAAAAIAAAAAAAEAAAAAhEAAACAEAAAAA=</HashCode>
+      <FileName>MVC\Model\Front_END\Sort_Front_END.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Front_END.Config_Tree_Front_END">
+    <Position X="13" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABCAAIAAgAABAAAAACAgAAAAAAAAAAAAAAEBAA=</HashCode>
+      <FileName>MVC\Model\Front_END\Tree_Front_END.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Front_END.Tree_Front_END&lt;T&gt;">
+    <Position X="13" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCgAABICAAAAAAACAAAECACAAAgQARAEACIEEAIAA=</HashCode>
+      <FileName>MVC\Model\Front_END\Tree_Front_END.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="config" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Search.Base_Search&lt;T&gt;">
+    <Position X="8.25" Y="11.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="DAS_SDK.MVC.Model.Search.Base_Search&lt;T&gt;.DoSearch" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\Model\Search\Base_Search\Base_Search.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <AssociationLine Name="_Debug" Type="DAS_SDK.MVC.Model.Debug.Base_Debug" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.312" Y="11.5" />
+        <Point X="9.312" Y="11.125" />
+        <Point X="8.938" Y="11.125" />
+        <Point X="8.938" Y="10.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAAEABQAAAAAAAAAAAAABAAEAAQEgAABIQQAAAgAQA=</HashCode>
+      <FileName>MVC\Model\Search\Base_Search\Base_Search.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="front_END" />
+      <Field Name="_Debug" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Search.Binary_Search&lt;T&gt;">
+    <Position X="4.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Search\Binary_Search.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Sorts.Base_Sort.Base_Sort&lt;T&gt;">
+    <Position X="8.5" Y="3.75" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="DAS_SDK.MVC.Model.Sorts.Base_Sort.Base_Sort&lt;T&gt;.DoSort" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\Model\Sorts\Base_Sort\Base_Sort.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAFgAAAACgQAAACAAQIEQAABQAQkAAAAAAAgEAAEQ=</HashCode>
+      <FileName>MVC\Model\Sorts\Base_Sort\Base_Sort.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_Debug" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Sorts.Bubble_Sort&lt;T&gt;">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAQABAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Sorts\Bubble_Sort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Sorts.Quick_Sort&lt;T&gt;">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQEBAAAAABAAAAAAQgAIAAAAA=</HashCode>
+      <FileName>MVC\Model\Sorts\Quick_Sort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Sorts.Radix_Sort&lt;T&gt;">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAQCBAAAAAAAAAAAAAgAgAAAAA=</HashCode>
+      <FileName>MVC\Model\Sorts\Radix_Sort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Sorts.Select_Sort&lt;T&gt;">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQABAAAAACAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Sorts\Select_Sort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Base_Tree.Base_Tree&lt;T&gt;">
+    <Position X="23.5" Y="11" Width="1.5" />
+    <AssociationLine Name="BranchMasterNodes" Type="DAS_SDK.MVC.Model.Trees.Base_Tree.Node.BranchMasterNode&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="23.938" Y="11" />
+        <Point X="23.938" Y="6.559" />
+        <Point X="21.641" Y="6.559" />
+        <Point X="21.641" Y="6.184" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AICAAAAAAAAAACAAAAAAAAAAAIEAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Base_Tree\Base_Tree.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Root" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="Branches" />
+      <Field Name="BranchMasterNodes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Base_Tree.Node.BranchMasterNode&lt;T&gt;">
+    <Position X="20.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Base_Tree\Node\BranchMasterNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Base_Tree.Node.Leaf&lt;T&gt;">
+    <Position X="23.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Base_Tree\Node\Leaf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Base_Tree.Node.Node&lt;T&gt;">
+    <Position X="22.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAJAQAAAAAQAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Base_Tree\Node\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Base_Tree.Node.Root&lt;T&gt;">
+    <Position X="25.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Base_Tree\Node\Root.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes.Branch&lt;T&gt;">
+    <Position X="20.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAIAAAAAAAIAAAACQAAAAEAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Base_Tree\Shapes\Branch.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="BranchMasterNode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Drawable.DrawableNode&lt;T&gt;">
+    <Position X="18.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAkAAAIAAAAAAEAAAAAAAACACAAAAAEAYAE=</HashCode>
+      <FileName>MVC\Model\Trees\Drawable\DrawableNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="tree_Front_END" />
+      <Property Name="Node" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.Drawable.DrawableService&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAgAAAAAIAAQAAAAAAAECAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Drawable\DrawableService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="DrawableNodes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DAS_SDK.MVC.Model.Trees.TreeService&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAGAAAAAAAAAAAAAAAAAAQAAAAAAAEAAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\TreeService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Trees" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="DAS_SDK.MVC.Enums.DAS_ENUM" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Enums\DAS_ENUM.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Enums.DAS_ENUM_CustomArray" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>MVC\Enums\DAS_ENUM.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Enums.DAS_ENUM_SORT_TYPE" Collapsed="true">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAACQAAAAAA=</HashCode>
+      <FileName>MVC\Enums\DAS_ENUM.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Enums.DAS_FORMAT_ENUM" Collapsed="true">
+    <Position X="4" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>MVC\Enums\DAS_ENUM.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MessageType_ENUM" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAQAAAAAAABAAAoAAAAAAAABAEAAAAAg=</HashCode>
+      <FileName>MVC\Model\Debug\Message.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Model.AddMethodFront" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAQAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Front_and_List\MyFront.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Model.AddMethodList" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAQAAAAAAAEAAAACAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Front_and_List\MyList.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Model.Search.Sort_Type" Collapsed="true">
+    <Position X="5.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAACQAAAAAA=</HashCode>
+      <FileName>MVC\Model\Search\Base_Search\Base_Search.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Model.Sorts.Base_Sort.Order_Enum" Collapsed="true">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAIABAAAACAAAAAABAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Sorts\Base_Sort\Base_Sort.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Model.Sorts.Base_Sort.SortState" Collapsed="true">
+    <Position X="2.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAwAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Sorts\Base_Sort\Base_Sort.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DAS_SDK.MVC.Model.Trees.Drawable.NodeTypes" Collapsed="true">
+    <Position X="2.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVC\Model\Trees\Drawable\DrawableNode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

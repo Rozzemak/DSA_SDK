@@ -22,7 +22,6 @@ namespace DAS_SDK.MVC.Model.Front_END
 {
     class Base_Front_END
     {
-        protected List<UIElement> UiElements = new List<UIElement>();
         protected List<Window> WindowRefList;
         protected Grid Grid_Root_ControlRef;
         protected StackPanel StackPanel;

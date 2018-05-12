@@ -12,6 +12,7 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes
         public BranchMasterNode<T> BranchMasterNode;
         public List<Node<T>> BranchNodes = new List<Node<T>>();
         public List<Leaf<T>> Leaves = new List<Leaf<T>>();
+        public List<List<Node<T>>> LeveledListsOfNodes = new List<List<Node<T>>>(20);
 
         public Branch(List<Node<T>> branchNodes, BranchMasterNode<T> branchMasterNode)
         {
@@ -19,6 +20,10 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes
             foreach (var item in branchNodes)
             {
                 this.BranchNodes.Add(item);
+            }
+            for (int i = 0; i < 64; i++)
+            {
+                LeveledListsOfNodes.Add(new List<Node<T>>());
             }
             UpdateBranch();
         }
@@ -35,6 +40,14 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes
                     BranchNodes[i] = new Leaf<T>(BranchNodes[i].Content, BranchNodes[i].ConnectedNodes[0]);
                     Leaves.Add(BranchNodes[i] as Leaf<T>);
                 }
+            }
+        }
+
+        public void CreateLeveledList()
+        {
+            foreach (var item in BranchNodes)
+            {
+                LeveledListsOfNodes.ElementAt(item.Level).Add(item);
             }
         }
 
@@ -57,6 +70,7 @@ namespace DAS_SDK.MVC.Model.Trees.Base_Tree.Shapes
                                  "Branch is supposed to have one MasterNode, and has to be continuous");
             Leaves.Clear();
             FindLeaves();
+            CreateLeveledList();
         }
     }
 }

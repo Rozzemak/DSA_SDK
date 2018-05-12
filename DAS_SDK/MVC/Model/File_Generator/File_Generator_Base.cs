@@ -50,7 +50,7 @@ namespace DAS_SDK.MVC.Model.File_Generator
     class File_Generator_Base<Type>
     {
         protected ulong maxSizeInBytes;
-        protected string path;
+        public string path;
         private Random rnd;
         private DAS_FORMAT_ENUM format_enum;
         private FileInfo fileInfo;

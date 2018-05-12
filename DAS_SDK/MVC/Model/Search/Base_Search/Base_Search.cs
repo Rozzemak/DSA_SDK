@@ -80,8 +80,8 @@ namespace DAS_SDK.MVC.Model.Search
         {
             Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
             {
-                front_END.SortButton.Content = "Searching!";
-                front_END.SortButton.Visibility = Visibility.Hidden;
+                front_END.Controller_InitButton.Content = "Searching!";
+                front_END.Controller_InitButton.Visibility = Visibility.Hidden;
             });
             Thread t = new Thread(delegate ()
             {

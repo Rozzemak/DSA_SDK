@@ -26,9 +26,8 @@ namespace DAS_SDK
     /// </summary>
     public partial class MainWindow : Window
     {
-        SDK_Controller _Controller;
+        SDK_Controller<int> _Controller;
         Random rnd = new Random();
-
 
         public MainWindow()
         {
@@ -74,7 +73,6 @@ namespace DAS_SDK
             }
         }
 
-
         private void AddVal(object sender, RoutedEventArgs e)
         {
             if ((DAS_ENUM_CustomArray)Enum.Parse(typeof(DAS_ENUM_CustomArray), ((ComboBoxItem)OperationType_CB.SelectedItem).Content.ToString()) == DAS_ENUM_CustomArray.Front)
@@ -90,8 +88,6 @@ namespace DAS_SDK
                 TextBox_Num.Text = rnd.Next(-200, 200).ToString();
             }
         }
-
-
 
         private void RemoveVal(object sender, RoutedEventArgs e)
         {
@@ -130,11 +126,13 @@ namespace DAS_SDK
 
         private void Cont_InitButton_Click(object sender, RoutedEventArgs e)
         {
+            Add_ValButton.Visibility = Visibility.Visible;
+            Rem_ValButton.Visibility = Visibility.Visible;
             SetConsolePosition((int)this.Left, (int)(this.Top+20));
             Thread _thread = new Thread(()=>
             {
                 this.Dispatcher.BeginInvoke(new Action(()=> {
-                    _Controller = new SDK_Controller(this, App.Current.MainWindow.Dispatcher.Thread);
+                    _Controller = new SDK_Controller<int>(this, App.Current.MainWindow.Dispatcher.Thread);
                 }));          
             });
              _thread.Start();
@@ -146,7 +144,6 @@ namespace DAS_SDK
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
-
 
         /// <summary>
         /// Searched MC documentation, and felt urge to comment this -_-.
@@ -165,7 +162,6 @@ namespace DAS_SDK
 
         [DllImport("user32.dll")]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
 
         public void SetConsolePosition(int left, int top)
         {

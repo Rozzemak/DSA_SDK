@@ -18,8 +18,8 @@
             <ColumnDefinition Width="136*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Name="Stack_Action_Root">
-            <Button Grid.Column="0" Content="Add__Val" HorizontalAlignment="Left" Margin="0,13,0,0" VerticalAlignment="Top" Width="75" Click="AddVal"/>
-            <Button Content="Rem__Val" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="RemoveVal"/>
+            <Button Visibility="Hidden" Name="Add_ValButton" Grid.Column="0" Content="Add__Val" HorizontalAlignment="Left" Margin="0,13,0,0" VerticalAlignment="Top" Width="75" Click="AddVal"/>
+            <Button Visibility="Hidden" Name="Rem_ValButton"  Content="Rem__Val" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="RemoveVal"/>
         </StackPanel>
 
         <TextBox Name="TextBox_ArrayContent" Text="ArrayContent" TextAlignment="Center" HorizontalAlignment="Left" Height="110" Margin="0,211,0,-0.2" TextWrapping="Wrap" VerticalAlignment="Top" Width="518" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
@@ -41,7 +41,7 @@
             <ComboBoxItem Content="AddToStack_Dynamic" HorizontalAlignment="Left" Width="118.4"/>
         </ComboBox>
         <ProgressBar Name="Progress_Bar" Value="0" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="0.4,179,0,0" VerticalAlignment="Top" Width="432" Grid.ColumnSpan="2"/>
-        <Button Name="Cont_InitButton" Content="Cont_init" Grid.Column="1" HorizontalAlignment="Left" Margin="23.4,76,0,0" VerticalAlignment="Top" Width="75" Click="Cont_InitButton_Click"/>
+        <Button Name="Cont_InitButton" Content="Load_Controller" Grid.Column="1" HorizontalAlignment="Left" Margin="5.4,136,0,0" VerticalAlignment="Top" Width="99" Click="Cont_InitButton_Click" Height="38"/>
     </Grid>
 </Window>
     

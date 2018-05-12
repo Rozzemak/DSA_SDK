@@ -133,8 +133,8 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
         {
             Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
             {
-                front_END.SortButton.Content = "Sorting!";
-                front_END.SortButton.Visibility = Visibility.Hidden;
+                front_END.Controller_InitButton.Content = "Sorting!";
+                front_END.Controller_InitButton.Visibility = Visibility.Hidden;
             });
             Thread t = new Thread(delegate ()
             {
@@ -177,8 +177,8 @@ namespace DAS_SDK.MVC.Model.Sorts.Base_Sort
                 MessageBox.Show("Sorted file[" + filePath.Substring(0, filePath.Length - 4) + "_sorted" + ".txt" + "] \n has been created, \n using " + GetType().Name.Substring(0, GetType().Name.Length - 2) + ".");
                 Dispatcher.FromThread(front_END.UI_Thread).Invoke(() =>
                 {
-                    front_END.SortButton.Content = "Cont_Init";
-                    front_END.SortButton.Visibility = Visibility.Visible;
+                    front_END.Controller_InitButton.Content = "Cont_Init";
+                    front_END.Controller_InitButton.Visibility = Visibility.Visible;
                 });
                 return true;
             }

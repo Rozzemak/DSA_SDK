@@ -21,12 +21,12 @@ namespace DAS_SDK.MVC.Enums
     public enum DAS_ENUM_SORT_TYPE
     {
         Select,
-        Insert,
+        //Insert,
         Bubble,
-        Merge,
+        // Merge,
         Radix,
         Quick,
-        Bogo        
+        //Bogo        
     }
 
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace DAS_SDK.MVC.Model.Trees.Drawable
@@ -15,7 +16,7 @@ namespace DAS_SDK.MVC.Model.Trees.Drawable
     }
 
 
-    class DrawableNode<T> : IDrawable where T : IComparable
+    class DrawableNode<T> where T : IComparable
     {
         public float X;
         public float Y;
@@ -25,6 +26,8 @@ namespace DAS_SDK.MVC.Model.Trees.Drawable
         public Brush color = Brushes.AliceBlue;
         public Node<T> Node { get; private set; }
         Tree_Front_END<T> tree_Front_END;
+        public UIElement _UIElement;
+        public DrawableNode<T> drawableParentNode;
 
         public DrawableNode(Node<T> node)
         {
@@ -32,7 +35,7 @@ namespace DAS_SDK.MVC.Model.Trees.Drawable
             ColorCheck(node);
         }
 
-        public DrawableNode(Node<T> node, float x, float y, float z, int width, int height)
+        public DrawableNode(Node<T> node, float x, float y, float z, int width, int height, DrawableNode<T> drawableParentNode = null)
         {
             this.Node = node;
             this.X = x;
@@ -41,8 +44,8 @@ namespace DAS_SDK.MVC.Model.Trees.Drawable
             this.Width = width;
             this.Height = height;
             ColorCheck(node);
+            this.drawableParentNode = drawableParentNode;
         }
-
 
         public void ColorCheck(Node<T> node)
         {
@@ -63,29 +66,5 @@ namespace DAS_SDK.MVC.Model.Trees.Drawable
             }
         }
 
-        public void Draw()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsObservable(float range)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddToDrawCollection()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

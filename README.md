@@ -2,6 +2,11 @@
 This is unmodified deadline PGL2 release commit from my local repo. 
 Same project image can be found on my public onedrive page.
 
+## Requirements
+* .NET 4.7
+* Windows 10 x64 (possible to build for x32, but generated file size may be reduced)
+* DirectDraw supported GPU (Nearly all GPUs support this.)
+
 ## Introduction
 This project will be covering all Algorithm, which are 
 essentials parts of DSA course.

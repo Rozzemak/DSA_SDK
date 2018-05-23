@@ -22,6 +22,7 @@ using System.Windows.Threading;
 using System.Windows.Controls;
 using System.Diagnostics;
 using System.IO;
+using DAS_SDK.MVC.Enums;
 
 namespace DAS_SDK.MVC.Controller
 {
@@ -49,6 +50,7 @@ namespace DAS_SDK.MVC.Controller
         Select_Sort<T> select_Sort;
         Quick_Sort<T> quick_Sort;
         Radix_Sort<T> radix_Sort;
+        HeapSort<T> heap_Sort;
 
         Binary_Search<int> binary_Search;
 
@@ -253,7 +255,7 @@ namespace DAS_SDK.MVC.Controller
             }
         }
 
-        public void Sort_FrontEND_Init(Sort_Type SortType, int fileSizeInMB)
+        public void Sort_FrontEND_Init(DAS_ENUM_SORT_TYPE SortType, int fileSizeInMB)
         {
             Thread _thread = new Thread(delegate ()
             {
@@ -268,27 +270,32 @@ namespace DAS_SDK.MVC.Controller
                 file_Generator.CreateAndFill<T>();
                 switch (SortType)
                 {
-                    case Sort_Type.Bubble:
+                    case DAS_ENUM_SORT_TYPE.Bubble:
                         bubble_Sort = new Bubble_Sort<T>(debug, sort_Front_END, file_Generator.path);
                         (bubble_Sort as Base_Sort<T>).FileSorted += SDK_Controller_FileSorted;
                         bubble_Sort.Sort();
                         break;
-                    case Sort_Type.Select:
+                    case DAS_ENUM_SORT_TYPE.Select:
                         select_Sort = new Select_Sort<T>(debug, sort_Front_END, file_Generator.path);
                         (select_Sort as Base_Sort<T>).FileSorted += SDK_Controller_FileSorted;
                         select_Sort.Sort();
                         break;
-                    case Sort_Type.Quick:
+                    case DAS_ENUM_SORT_TYPE.Quick:
                         quick_Sort = new Quick_Sort<T>(debug, sort_Front_END, file_Generator.path);
                         (quick_Sort as Base_Sort<T>).FileSorted += SDK_Controller_FileSorted;
                         quick_Sort.Sort();
                         break;
-                    case Sort_Type.Radix:
+                    case DAS_ENUM_SORT_TYPE.Radix:
                         radix_Sort = new Radix_Sort<T>(debug, sort_Front_END, file_Generator.path);
                         (radix_Sort as Base_Sort<T>).FileSorted += SDK_Controller_FileSorted;
                         radix_Sort.Sort();
                         break;
-                    case Sort_Type.none:
+                    case DAS_ENUM_SORT_TYPE.Heap:
+                        heap_Sort = new HeapSort<T>(debug, sort_Front_END, file_Generator.path);
+                        (heap_Sort as Base_Sort<T>).FileSorted += SDK_Controller_FileSorted;
+                        heap_Sort.Sort();
+                        break;
+                    case DAS_ENUM_SORT_TYPE.none:
                         throw new Exception("No sort selected.");
                 }
             });
@@ -321,7 +328,7 @@ namespace DAS_SDK.MVC.Controller
         {
             foreach (var sortInitButton in sort_Front_END.UiElements)
             {
-                foreach (var item in Enum.GetNames(typeof(Sort_Type)))
+                foreach (var item in Enum.GetNames(typeof(DAS_ENUM_SORT_TYPE)))
                 {
                     Dispatcher.FromThread(sort_Front_END.UI_Thread).Invoke(new Action(() =>
                     {
@@ -343,7 +350,7 @@ namespace DAS_SDK.MVC.Controller
             {
                 sortInitButton.Visibility = Visibility.Hidden;
             }
-            Sort_FrontEND_Init((Sort_Type)Enum.Parse(typeof(Sort_Type), (sender as Button).Name), 1);
+            Sort_FrontEND_Init((DAS_ENUM_SORT_TYPE)Enum.Parse(typeof(DAS_ENUM_SORT_TYPE), (sender as Button).Name), 1);
             debug.AddMessage<string>(new Message<object>((sender as Button).Name + "sort initiated!"));
         }
     }

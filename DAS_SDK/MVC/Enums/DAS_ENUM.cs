@@ -26,6 +26,8 @@ namespace DAS_SDK.MVC.Enums
         // Merge,
         Radix,
         Quick,
+        Heap,
+        none
         //Bogo        
     }
 

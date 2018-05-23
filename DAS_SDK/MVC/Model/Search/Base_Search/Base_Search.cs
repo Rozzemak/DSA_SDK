@@ -19,6 +19,7 @@ namespace DAS_SDK.MVC.Model.Search
         Select,
         Quick,
         Radix,
+        Heap,
         none 
     }
 

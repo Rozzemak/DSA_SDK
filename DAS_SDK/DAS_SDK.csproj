@@ -118,6 +118,7 @@
     <Compile Include="MVC\Model\Sorts\Base_Sort\Base_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Base_Sort\Sort_Events_Args.cs" />
     <Compile Include="MVC\Model\Sorts\Bubble_Sort.cs" />
+    <Compile Include="MVC\Model\Sorts\HeapSort.cs" />
     <Compile Include="MVC\Model\Sorts\Quick_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Radix_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Select_Sort.cs" />

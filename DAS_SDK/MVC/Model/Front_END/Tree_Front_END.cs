@@ -163,6 +163,7 @@ namespace DAS_SDK.MVC.Model.Front_END
                 //_drawableNode._UIElement.MouseLeftButtonDown += Btn_MouseLeftButtonDown;
                 //if (_drawableNode._UIElement == null) throw new Exception("DNode has no UIElement");
                 _drawableNode._UIElement.MouseDown += _UIElement_MouseDown; 
+                
             }
             UpdateRenderPositions();
         }
@@ -178,6 +179,23 @@ namespace DAS_SDK.MVC.Model.Front_END
         private void _UIElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Debug.AddMessage<object>(new Message<object>(sender.GetHashCode()));
+            foreach (var item in DrawableService.GetCollection())
+            {
+                if(item._UIElement == sender as UIElement)
+                {
+                    foreach (var cNode in item.Node.ConnectedNodes)
+                    {
+                        foreach (var dNode2 in DrawableService.GetCollection())
+                        {
+                            if(dNode2.Node == cNode && dNode2.Node.Level != cNode.Level-1)
+                            {
+                                dNode2._UIElement.Visibility = Visibility.Hidden;
+                            }
+                        }
+                    }
+                }
+            }
+            (sender as Button).Visibility = Visibility.Hidden;
         }
 
         /// <summary>

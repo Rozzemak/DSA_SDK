@@ -22,9 +22,9 @@ namespace DAS_SDK.MVC.Model.Front_END
 {
     class Base_Front_END
     {
-        protected List<Window> WindowRefList;
+        public List<Window> WindowRefList;
         protected Grid Grid_Root_ControlRef;
-        protected StackPanel StackPanel;
+        public StackPanel StackPanel;
         protected Base_Debug Debug;
 
         public Thread UI_Thread;

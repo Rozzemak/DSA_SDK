@@ -123,6 +123,9 @@
     <Compile Include="MVC\Model\Sorts\Radix_Sort.cs" />
     <Compile Include="MVC\Model\Sorts\Select_Sort.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Base_Tree.cs" />
+    <Compile Include="MVC\Model\Trees\BinaryTree\BinaryTree.cs" />
+    <Compile Include="MVC\Model\Trees\BinaryTree\BinaryTreeNode.cs" />
+    <Compile Include="MVC\Model\Trees\BinaryTree\BTreeManager.cs" />
     <Compile Include="MVC\Model\Trees\Drawable\DrawableNode.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Shapes\Branch.cs" />
     <Compile Include="MVC\Model\Trees\Base_Tree\Node\BranchMasterNode.cs" />

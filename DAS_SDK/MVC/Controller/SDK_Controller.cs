@@ -23,6 +23,7 @@ using System.Windows.Controls;
 using System.Diagnostics;
 using System.IO;
 using DAS_SDK.MVC.Enums;
+using DAS_SDK.MVC.Model.Trees.BinaryTree;
 
 namespace DAS_SDK.MVC.Controller
 {
@@ -38,6 +39,7 @@ namespace DAS_SDK.MVC.Controller
         List<Base_Tree<string>> Trees = new List<Base_Tree<string>>();
 
         File_Generator_Base<object> file_Generator;
+        BTreeManager<int> bTreeManager;
 
         Sort_Front_END sort_Front_END;
         TreeService<string> treeService = new TreeService<string>();
@@ -150,8 +152,16 @@ namespace DAS_SDK.MVC.Controller
                     tree_Front_END = new Tree_Front_END<string>(windowRefList, _UI_Thread, debug, treeService);
 
                 });
+
+
+                bTreeManager = new BTreeManager<int>(debug, sort_Front_END);
+                bTreeManager.Init(100000);
+                bTreeManager.FindNode(1);
+                bTreeManager.WriteTree();
+                bTreeManager.WriteTree(BinaryTree<int>.TraversalMode.PreOrder);
+
+
                 //WriteLevels();
-                //Sort_FrontEND_Init(Sort_Type.Quick);
                 SubscribeToSortFrontEndEvents(sort_Front_END);
             });
             _threadRd.Start();
@@ -261,7 +271,8 @@ namespace DAS_SDK.MVC.Controller
             {
                 string name = "Unsorted.txt";
                 int filesize = 10;
-                Dispatcher.FromThread(sort_Front_END.UI_Thread).Invoke(new Action(()=> {
+                Dispatcher.FromThread(sort_Front_END.UI_Thread).Invoke(new Action(() =>
+                {
                     name = sort_Front_END.FileNameTextBox.Text;
                     filesize = sort_Front_END.SizeOfFileInMB;
                 }));

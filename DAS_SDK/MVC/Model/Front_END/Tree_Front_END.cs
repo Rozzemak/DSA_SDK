@@ -179,15 +179,16 @@ namespace DAS_SDK.MVC.Model.Front_END
         private void _UIElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Debug.AddMessage<object>(new Message<object>(sender.GetHashCode()));
+            (sender as Button).Visibility = Visibility.Hidden;
             foreach (var item in DrawableService.GetCollection())
-            {
-                if(item._UIElement == sender as UIElement)
+            {            
+                if (item._UIElement == sender as UIElement)
                 {
                     foreach (var cNode in item.Node.ConnectedNodes)
                     {
                         foreach (var dNode2 in DrawableService.GetCollection())
                         {
-                            if(dNode2.Node == cNode && dNode2.Node.Level != cNode.Level-1)
+                            if (dNode2.Node.Level > cNode.Level && (item._UIElement as Button) == sender as Button && dNode2.Node.Content.CompareTo(item.Node.Content) > 0)
                             {
                                 dNode2._UIElement.Visibility = Visibility.Hidden;
                             }
@@ -195,7 +196,6 @@ namespace DAS_SDK.MVC.Model.Front_END
                     }
                 }
             }
-            (sender as Button).Visibility = Visibility.Hidden;
         }
 
         /// <summary>

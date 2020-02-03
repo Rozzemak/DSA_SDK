@@ -1,4 +1,5 @@
 ﻿using System;
+using DAS_SDK.MVC.Enums;
 
 namespace DAS_SDK.MVC.Model.Sorts.BaseSort
 {

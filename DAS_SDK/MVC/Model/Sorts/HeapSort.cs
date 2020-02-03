@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using DAS_SDK.MVC.Enums;
 using DAS_SDK.MVC.Model.FrontEND;
 using DAS_SDK.MVC.Model.Sorts.BaseSort;
 

@@ -14,28 +14,6 @@ using DAS_SDK.MVC.Model.FrontEND;
 
 namespace DAS_SDK.MVC.Model.Sorts.BaseSort
 {
-    enum OrderEnum
-    {
-        Ascending,
-        Descending,
-        CannotBeSpecified,
-        AscLength,
-        DescLength
-    }
-
-    enum SortState
-    {
-        Unsorted,
-        Sorting,
-        Sorted
-    }
-
-    static class Ext
-    {
-        public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> self)
-            => self.Select((item, index) => (item, index));
-    }
-
     class BaseSort<T>
     {
         private DateTime startedSortingDate;

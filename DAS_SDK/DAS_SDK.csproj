@@ -101,6 +101,8 @@
     <Compile Include="MVC\Controller\FrontENDController.cs" />
     <Compile Include="MVC\Controller\SDKController.cs" />
     <Compile Include="MVC\Enums\DAS_ENUM.cs" />
+    <Compile Include="MVC\Enums\OrderEnum.cs" />
+    <Compile Include="MVC\Enums\SortState.cs" />
     <Compile Include="MVC\Model\Debug\BaseDebug.cs" />
     <Compile Include="MVC\Model\Debug\Message.cs" />
     <Compile Include="MVC\Model\FileGenerator\FileGeneratorBase.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="MVC\Model\Search\BinarySearch.cs" />
     <Compile Include="MVC\Model\Search\BaseSearch\BaseSearch.cs" />
     <Compile Include="MVC\Model\Sorts\BaseSort\BaseSort.cs" />
+    <Compile Include="MVC\Model\Sorts\BaseSort\Ext.cs" />
     <Compile Include="MVC\Model\Sorts\BaseSort\SortEventsArgs.cs" />
     <Compile Include="MVC\Model\Sorts\BubbleSort.cs" />
     <Compile Include="MVC\Model\Sorts\HeapSort.cs" />

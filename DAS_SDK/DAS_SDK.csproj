@@ -8,13 +8,14 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DAS_SDK</RootNamespace>
     <AssemblyName>DAS_SDK</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -97,47 +98,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MVC\Controller\Front_END_Controller.cs" />
-    <Compile Include="MVC\Controller\SDK_Controller.cs" />
+    <Compile Include="MVC\Controller\FrontENDController.cs" />
+    <Compile Include="MVC\Controller\SDKController.cs" />
     <Compile Include="MVC\Enums\DAS_ENUM.cs" />
-    <Compile Include="MVC\Model\Collisions\ConvexHull.cs" />
-    <Compile Include="MVC\Model\Debug\Base_Debug.cs" />
+    <Compile Include="MVC\Model\Debug\BaseDebug.cs" />
     <Compile Include="MVC\Model\Debug\Message.cs" />
-    <Compile Include="MVC\Model\File_Generator\File_Generator_Base.cs" />
-    <Compile Include="MVC\Model\Front_and_List\CustomArray.cs" />
-    <Compile Include="MVC\Model\Front_and_List\MyFront.cs" />
-    <Compile Include="MVC\Model\Front_and_List\MyList.cs" />
-    <Compile Include="MVC\Model\Front_END\Base_Front_END.cs" />
-    <Compile Include="MVC\Model\Front_END\Sort_Front_END.cs" />
-    <Compile Include="MVC\Model\Front_END\Tree_Front_END.cs" />
-    <Compile Include="MVC\Model\Interfaces\IDrawable.cs" />
-    <Compile Include="MVC\Model\Interfaces\IServise.cs" />
-    <Compile Include="MVC\Model\Search\Base_Search\Search_Event_Args.cs" />
-    <Compile Include="MVC\Model\Search\Binary_Search.cs" />
-    <Compile Include="MVC\Model\Search\Base_Search\Base_Search.cs" />
-    <Compile Include="MVC\Model\Sorts\Base_Sort\Base_Sort.cs" />
-    <Compile Include="MVC\Model\Sorts\Base_Sort\Sort_Events_Args.cs" />
-    <Compile Include="MVC\Model\Sorts\Bubble_Sort.cs" />
+    <Compile Include="MVC\Model\FileGenerator\FileGeneratorBase.cs" />
+    <Compile Include="MVC\Model\FrontAndList\CustomArray.cs" />
+    <Compile Include="MVC\Model\FrontAndList\MyFront.cs" />
+    <Compile Include="MVC\Model\FrontAndList\MyList.cs" />
+    <Compile Include="MVC\Model\FrontEND\BaseFrontEND.cs" />
+    <Compile Include="MVC\Model\FrontEND\SortFrontEND.cs" />
+    <Compile Include="MVC\Model\Search\BaseSearch\SearchEventArgs.cs" />
+    <Compile Include="MVC\Model\Search\BinarySearch.cs" />
+    <Compile Include="MVC\Model\Search\BaseSearch\BaseSearch.cs" />
+    <Compile Include="MVC\Model\Sorts\BaseSort\BaseSort.cs" />
+    <Compile Include="MVC\Model\Sorts\BaseSort\SortEventsArgs.cs" />
+    <Compile Include="MVC\Model\Sorts\BubbleSort.cs" />
     <Compile Include="MVC\Model\Sorts\HeapSort.cs" />
-    <Compile Include="MVC\Model\Sorts\Quick_Sort.cs" />
-    <Compile Include="MVC\Model\Sorts\Radix_Sort.cs" />
-    <Compile Include="MVC\Model\Sorts\Select_Sort.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Base_Tree.cs" />
-    <Compile Include="MVC\Model\Trees\BinaryTree\BinaryTree.cs" />
-    <Compile Include="MVC\Model\Trees\BinaryTree\BinaryTreeNode.cs" />
-    <Compile Include="MVC\Model\Trees\BinaryTree\BTreeManager.cs" />
-    <Compile Include="MVC\Model\Trees\Drawable\DrawableNode.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Shapes\Branch.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Node\BranchMasterNode.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Node\Leaf.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Node\Node.cs" />
-    <Compile Include="MVC\Model\Trees\Base_Tree\Node\Root.cs" />
-    <Compile Include="MVC\Model\Trees\Drawable\DrawableService.cs" />
-    <Compile Include="MVC\Model\Trees\TreeService.cs" />
-    <Compile Include="PGL_2\Adapter.cs" />
-    <Compile Include="PGL_2\Decorator.cs" />
-    <Compile Include="PGL_2\XML_Lib.cs" />
-    <Compile Include="PGL_2\XML_Work.cs" />
+    <Compile Include="MVC\Model\Sorts\QuickSort.cs" />
+    <Compile Include="MVC\Model\Sorts\RadixSort.cs" />
+    <Compile Include="MVC\Model\Sorts\SelectSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -156,6 +137,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagramRefactored.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

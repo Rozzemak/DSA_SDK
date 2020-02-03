@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
+using DAS_SDK.MVC.Model.FrontAndList;
 
 namespace DAS_SDK
 {
@@ -26,7 +27,7 @@ namespace DAS_SDK
     /// </summary>
     public partial class MainWindow : Window
     {
-        SDK_Controller<int> _Controller;
+        SdkController<int> controller;
         Random rnd = new Random();
 
         public MainWindow()
@@ -40,9 +41,9 @@ namespace DAS_SDK
 
         private void CheckWindow()
         {
-            bool loaded = false;
-            bool stop = false;
-            Thread th = new Thread(() => 
+            var loaded = false;
+            var stop = false;
+            var th = new Thread(() => 
             {
                 while (true)
                 {
@@ -75,48 +76,48 @@ namespace DAS_SDK
 
         private void AddVal(object sender, RoutedEventArgs e)
         {
-            if ((DAS_ENUM_CustomArray)Enum.Parse(typeof(DAS_ENUM_CustomArray), ((ComboBoxItem)OperationType_CB.SelectedItem).Content.ToString()) == DAS_ENUM_CustomArray.Front)
+            if ((DasEnumCustomArray)Enum.Parse(typeof(DasEnumCustomArray), ((ComboBoxItem)OperationType_CB.SelectedItem).Content.ToString()) == DasEnumCustomArray.Front)
             {
-                _Controller.myObjFront.AddToFront<object>((TextBox_Num.Text) as object, (AddMethodFront)Enum.Parse(typeof(AddMethodFront), ((ComboBoxItem)FrontAddType_CB.SelectedItem).Content.ToString()));
-                TextBox_ArrayContent.Text = _Controller.myObjFront.GetFrontContent();
+                controller.MyObjFront.AddToFront<object>((TextBox_Num.Text) as object, (AddMethodFront)Enum.Parse(typeof(AddMethodFront), ((ComboBoxItem)FrontAddType_CB.SelectedItem).Content.ToString()));
+                TextBox_ArrayContent.Text = controller.MyObjFront.GetFrontContent();
                 TextBox_Num.Text = rnd.Next(-200, 200).ToString();
             }
             else
             {
-                _Controller.myObjList.AddToList<object>((TextBox_Num.Text) as object, (AddMethodList)Enum.Parse(typeof(AddMethodList), ((ComboBoxItem)ListAddType_CB.SelectedItem).Content.ToString()));
-                TextBox_ArrayContent.Text = _Controller.myObjList.GetListContent();
+                controller.MyObjList.AddToList<object>((TextBox_Num.Text) as object, (AddMethodList)Enum.Parse(typeof(AddMethodList), ((ComboBoxItem)ListAddType_CB.SelectedItem).Content.ToString()));
+                TextBox_ArrayContent.Text = controller.MyObjList.GetListContent();
                 TextBox_Num.Text = rnd.Next(-200, 200).ToString();
             }
         }
 
         private void RemoveVal(object sender, RoutedEventArgs e)
         {
-            if ((DAS_ENUM_CustomArray)Enum.Parse(typeof(DAS_ENUM_CustomArray), ((ComboBoxItem)OperationType_CB.SelectedItem).Content.ToString()) == DAS_ENUM_CustomArray.Front)
+            if ((DasEnumCustomArray)Enum.Parse(typeof(DasEnumCustomArray), ((ComboBoxItem)OperationType_CB.SelectedItem).Content.ToString()) == DasEnumCustomArray.Front)
             {
-                _Controller.myObjFront.RemoveFromFront<object>();
-                TextBox_ArrayContent.Text = _Controller.myObjFront.GetFrontContent();
+                controller.MyObjFront.RemoveFromFront<object>();
+                TextBox_ArrayContent.Text = controller.MyObjFront.GetFrontContent();
             }
             else
             {
-                _Controller.myObjList.RemoveFromList<object>();
-                TextBox_ArrayContent.Text = _Controller.myObjList.GetListContent();
+                controller.MyObjList.RemoveFromList<object>();
+                TextBox_ArrayContent.Text = controller.MyObjList.GetListContent();
             }
 
         }
 
         private void OperationType_CB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_Controller != null)
+            if (controller != null)
             {
-                if ((DAS_ENUM_CustomArray)Enum.Parse(typeof(DAS_ENUM_CustomArray), ((ComboBoxItem)OperationType_CB.SelectedItem).Content.ToString()) == DAS_ENUM_CustomArray.Front)
+                if ((DasEnumCustomArray)Enum.Parse(typeof(DasEnumCustomArray), ((ComboBoxItem)OperationType_CB.SelectedItem).Content.ToString()) == DasEnumCustomArray.Front)
                 {
-                    _Controller.myObjFront = new MyFront<object>();
+                    controller.MyObjFront = new MyFront<object>();
                     FrontAddType_CB.Visibility = Visibility.Visible;
                     ListAddType_CB.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    _Controller.myObjList = new MyList<object>();
+                    controller.MyObjList = new MyList<object>();
                     ListAddType_CB.Visibility = Visibility.Visible;
                     FrontAddType_CB.Visibility = Visibility.Hidden;
                 }
@@ -129,13 +130,13 @@ namespace DAS_SDK
             Add_ValButton.Visibility = Visibility.Visible;
             Rem_ValButton.Visibility = Visibility.Visible;
             SetConsolePosition((int)this.Left, (int)(this.Top+20));
-            Thread _thread = new Thread(()=>
+            var thread = new Thread(()=>
             {
                 this.Dispatcher.BeginInvoke(new Action(()=> {
-                    _Controller = new SDK_Controller<int>(this, App.Current.MainWindow.Dispatcher.Thread);
+                    controller = new SdkController<int>(this, App.Current.MainWindow.Dispatcher.Thread);
                 }));          
             });
-             _thread.Start();
+             thread.Start();
         }
 
         [DllImport("kernel32.dll", ExactSpelling = true)]
@@ -158,7 +159,7 @@ namespace DAS_SDK
         /// <returns></returns>
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr opt_hWnd, int x, int y, int cx, int cy, uint uFlags);
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr optHWnd, int x, int y, int cx, int cy, uint uFlags);
 
         [DllImport("user32.dll")]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);

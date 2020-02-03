@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace DAS_SDK.MVC.Enums
 {
-    public enum DAS_ENUM
+    public enum DasEnum
     {
         Sort,
         Custom
     }
 
-    public enum DAS_ENUM_CustomArray
+    public enum DasEnumCustomArray
     {
         Front,
         List
     }
 
-    public enum DAS_ENUM_SORT_TYPE
+    public enum DasEnumSortType
     {
         Select,
         //Insert,
@@ -27,17 +27,17 @@ namespace DAS_SDK.MVC.Enums
         Radix,
         Quick,
         Heap,
-        none
+        None
         //Bogo        
     }
 
 
-    enum DAS_FORMAT_ENUM
+    enum DasFormatEnum
     {
-        BINARY,
-        TXT_ROW_1VAL,
-        TXT_1ROW_NVALS_COMMA_SEPARTOR,
-        TXT_NO_FORMAT
+        Binary,
+        TxtRow1Val,
+        Txt1RowNvalsCommaSepartor,
+        TxtNoFormat
     }
 
 }

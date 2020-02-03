@@ -4,29 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum MessageType_ENUM
-{
-    Standard,
-    Warning,
-    Error,
-    Exception,
-    Indifferent,
-    DEFAULT_WRITE_ALL,
-    Event,
-    ________
-}
-
 namespace DAS_SDK.MVC.Model.Debug
 {
+    public enum MessageTypeEnum
+    {
+        Standard,
+        Warning,
+        Error,
+        Exception,
+        Indifferent,
+        DefaultWriteAll,
+        Event,
+        ________
+    }
+
     class Message<T>
     {
         public T MessageContent;
-        public MessageType_ENUM _MessageType;
+        public MessageTypeEnum MessageType;
 
-        public Message(T messageContent, MessageType_ENUM messageType = MessageType_ENUM.Standard)
+        public Message(T messageContent, MessageTypeEnum messageType = MessageTypeEnum.Standard)
         {
             this.MessageContent = messageContent;
-            this._MessageType = messageType;
+            this.MessageType = messageType;
         }
 
     }

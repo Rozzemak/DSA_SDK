@@ -1,0 +1,14 @@
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\bin\x64\Release\DAS_SDK.exe.config
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\bin\x64\Release\DAS_SDK.exe
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\bin\x64\Release\DAS_SDK.pdb
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK.csprojAssemblyReference.cache
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\MainWindow.g.cs
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\App.g.cs
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK_MarkupCompile.cache
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK_MarkupCompile.lref
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\MainWindow.baml
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK.g.resources
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK.Properties.Resources.resources
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK.csproj.GenerateResource.cache
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK.exe
+C:\Users\Rozze\Desktop\PGL\OON\DSA_SDK\DAS_SDK\obj\x64\Release\DAS_SDK.pdb
